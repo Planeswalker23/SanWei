@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zml.sanwei.dao.BookDao">
+    <insert id="insertList">
+        insert into book values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.bookId, jdbcType=VARCHAR},
+            #{item.name, jdbcType=VARCHAR},
+            #{item.writer, jdbcType=VARCHAR},
+            #{item.publisher, jdbcType=VARCHAR},
+            #{item.date, jdbcType=VARCHAR},
+            #{item.img, jdbcType=VARCHAR},
+            #{item.type, jdbcType=VARCHAR},
+            #{item.introduce, jdbcType=VARCHAR},
+            #{item.grade, jdbcType=VARCHAR},
+            #{item.people, jdbcType=VARCHAR},
+            #{item.price, jdbcType=VARCHAR},
+            #{item.no, jdbcType=VARCHAR},
+            #{item.detailUrl, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryAllBooks" resultType="cn.zml.sanwei.model.BookDto">
+        select * from book
+    </select>
+
+    <select id="countBookById" resultType="java.lang.Integer">
+        select count(*) from book where bookid=#{bookId}
+    </select>
+
+    <select id="queryBook" parameterType="cn.zml.sanwei.model.Book">
+        select * from book
+        <where>
+            1=1
+            <if test="bookId!=null and booId!=''">
+                and bookid=#{bookId}
+            </if>
+            <if test="name!=null and name!=''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="writer!=null and writer!=''">
+                and writer like concat('%', #{writer}, '%')
+            </if>
+            <if test="type!=null and type!=''">
+                and type=#{type}
+            </if>
+        </where>
+    </select>
+</mapper>

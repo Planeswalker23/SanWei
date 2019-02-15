@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zml.sanwei.dao.CommentDao">
+    <insert id="insertList">
+        insert into comment values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.commentId, jdbcType=VARCHAR},
+            #{item.bookId, jdbcType=VARCHAR},
+            #{item.person, jdbcType=VARCHAR},
+            #{item.commentContent, jdbcType=VARCHAR},
+            #{item.commentDate, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <select id="getComments" resultType="cn.zml.sanwei.model.Comment">
+        select * from comment
+    </select>
+</mapper>
