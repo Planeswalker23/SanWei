@@ -1,15 +1,27 @@
 package cn.zml.sanwei.common;
 
 /**
+ * 公用返回类
  * @Author fanyidong
  * @Despriction
  * @Date:Created in 2018-12-08
  */
-public class SanWeiRes {
+public class SanWeiRes<T> {
 
+    /**
+     * 返回状态码 200-成功 500-错误
+     */
     private Integer code;
-    private String message;
-    private Object data;
+
+    /**
+     * 如果失败，则返回错误内容
+     */
+    private String reason;
+
+    /**
+     * 请求返回内容
+     */
+    private T res;
 
     public Integer getCode() {
         return code;
@@ -19,33 +31,33 @@ public class SanWeiRes {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getReason() {
+        return reason;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
-    public Object getData() {
-        return data;
+    public T getRes() {
+        return res;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setRes(T res) {
+        this.res = res;
     }
 
-    public static SanWeiRes success(Object data) {
-        SanWeiRes bs = new SanWeiRes();
-        bs.setCode(200);
-        bs.setData(data);
-        return bs;
+    public static <T> SanWeiRes success(T data) {
+        SanWeiRes<T> sw = new SanWeiRes<>();
+        sw.setCode(200);
+        sw.setRes(data);
+        return sw;
     }
 
     public static SanWeiRes failed(String reason) {
-        SanWeiRes bs = new SanWeiRes();
-        bs.setCode(500);
-        bs.setMessage(reason);
-        return bs;
+        SanWeiRes sw = new SanWeiRes();
+        sw.setCode(500);
+        sw.setReason(reason);
+        return sw;
     }
 }
