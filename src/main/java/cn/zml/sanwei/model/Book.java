@@ -1,8 +1,7 @@
 package cn.zml.sanwei.model;
 
-import java.util.UUID;
-
 /**
+ * book实体类
  * @author  fanyidong
  * @date Created in 2018/11/29
  */
@@ -23,10 +22,6 @@ public class Book {
     private String price;
     private String no;
     private String detailUrl;
-
-    public Book() {
-        this.bookId = UUID.randomUUID().toString();
-    }
 
     public String getBookId() {
         return bookId;
