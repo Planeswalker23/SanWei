@@ -1,6 +1,6 @@
 package cn.zml.sanwei.util;
 
-import cn.zml.sanwei.model.BookDto;
+import cn.zml.sanwei.model.BookDetailComments;
 import cn.zml.sanwei.model.Comment;
 import cn.zml.sanwei.model.Detail;
 import org.apache.http.HttpEntity;
@@ -30,12 +30,12 @@ public class HttpClientUtil {
 
     /**
      * 使用Jsoup解析网页信息
-     * @param bookDto book传输类实体，用于detail和comments的赋值
-     * @return 返回BookDto对象
+     * @param bookDetailComments book传输类实体，用于detail和comments的赋值
+     * @return 返回BookDetailComments对象
      * @throws IOException
      */
-    public static BookDto getDetailAndComments(BookDto bookDto) throws IOException {
-        Document doc = Jsoup.parse(HttpClientUtil.doPost(bookDto.getDetailUrl()));
+    public static BookDetailComments getDetailAndComments(BookDetailComments bookDetailComments) throws IOException {
+        Document doc = Jsoup.parse(HttpClientUtil.doPost(bookDetailComments.getDetailUrl()));
         //获取内容简介
         Element content = doc.getElementById("link-report");
         //获取作者简介
@@ -47,9 +47,9 @@ public class HttpClientUtil {
             writer = writerElements.get(1).text().replaceAll(" ", "\n");
         }
         //获取目录
-        int len = bookDto.getDetailUrl().length();
+        int len = bookDetailComments.getDetailUrl().length();
         //豆瓣图书的序号
-        String no = bookDto.getDetailUrl().substring("https://book.douban.com/subject/".length(), len - 1);
+        String no = bookDetailComments.getDetailUrl().substring("https://book.douban.com/subject/".length(), len - 1);
         String contentId = "dir_" + no + "_full";
         Element catalogElement = doc.getElementById(contentId);
         //目录
@@ -62,16 +62,16 @@ public class HttpClientUtil {
         }
         //新建Detail对象
         Detail detail = new Detail();
-        detail.setBookId(bookDto.getBookId());
+        detail.setBookId(bookDetailComments.getBookId());
         detail.setDetailId(UUID.randomUUID().toString());
         detail.setContent(content == null ? null : content.text());
         detail.setWriter(writer);
         detail.setCatalog(catalog);
-        bookDto.setDetail(detail);
+        bookDetailComments.setDetail(detail);
         //获取书评
         Elements commentsPart = doc.getElementsByClass("comments by_rank");
         if (commentsPart == null || commentsPart.size() == 0) {
-            System.out.println("无书评 ----- " + bookDto.getName() + " - ID=" + bookDto.getBookId());
+            System.out.println("无书评 ----- " + bookDetailComments.getName() + " - ID=" + bookDetailComments.getBookId());
         } else {
             commentsPart = commentsPart.get(0).getElementsByClass("ctsh clearfix");
         }
@@ -93,10 +93,10 @@ public class HttpClientUtil {
                 dateIndex = 2;
             }
             String commentDate = contentElement.get(dateIndex).text();
-            Comment comment = new Comment(bookDto.getBookId(), userName, commentContent, commentDate, commentGrade);
-            bookDto.getComments().add(comment);
+            Comment comment = new Comment(bookDetailComments.getBookId(), userName, commentContent, commentDate, commentGrade);
+            bookDetailComments.getComments().add(comment);
         }
-        return bookDto;
+        return bookDetailComments;
     }
 
     public static String doPost(String url) throws IOException {

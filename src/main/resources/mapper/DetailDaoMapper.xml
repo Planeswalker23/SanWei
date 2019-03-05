@@ -2,14 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.zml.sanwei.dao.DetailDao">
     <insert id="insertList" parameterType="cn.zml.sanwei.model.Detail">
-        insert into detail
-        values
-       (
-           #{detailId, jdbcType=VARCHAR},
-           #{bookId, jdbcType=VARCHAR},
-           #{writer, jdbcType=VARCHAR},
-           #{content, jdbcType=VARCHAR},
-           #{catalog, jdbcType=VARCHAR}
-       )
+        insert into detail values (#{detailId},#{bookId},#{writer},#{content},#{catalog},now(),now())
     </insert>
 </mapper>

@@ -1,5 +1,7 @@
 package cn.zml.sanwei.model;
 
+import java.util.Date;
+
 /**
  * book实体类
  * @author  fanyidong
@@ -22,6 +24,11 @@ public class Book {
     private String price;
     private String no;
     private String detailUrl;
+
+    private Date createTime;
+    private Date updateTime;
+    private Integer enable;
+
 
     public String getBookId() {
         return bookId;
@@ -125,5 +132,29 @@ public class Book {
 
     public void setNo(String no) {
         this.no = no;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Integer enable) {
+        this.enable = enable;
     }
 }

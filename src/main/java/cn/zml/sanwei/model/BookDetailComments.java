@@ -7,7 +7,7 @@ import java.util.List;
  * @author  fanyidong
  * @date Created in 2018/11/29
  */
-public class BookDto extends Book {
+public class BookDetailComments extends Book {
 
     private Detail detail;
     private List<Comment> comments;

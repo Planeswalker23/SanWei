@@ -4,13 +4,7 @@
     <insert id="insertList">
         insert into comment values
         <foreach collection="list" item="item" index="index" separator=",">
-            (
-            #{item.commentId, jdbcType=VARCHAR},
-            #{item.bookId, jdbcType=VARCHAR},
-            #{item.person, jdbcType=VARCHAR},
-            #{item.commentContent, jdbcType=VARCHAR},
-            #{item.commentDate, jdbcType=VARCHAR}
-            )
+            (#{item.commentId},#{item.bookId},#{item.person},#{item.commentContent},#{item.commentDate},now(),now())
         </foreach>
     </insert>
 

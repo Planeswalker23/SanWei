@@ -47,6 +47,13 @@ public class SanWeiRes<T> {
         this.res = res;
     }
 
+    public static SanWeiRes success() {
+        SanWeiRes sw = new SanWeiRes();
+        sw.setCode(200);
+        sw.setReason("成功");
+        return sw;
+    }
+
     public static <T> SanWeiRes success(T data) {
         SanWeiRes<T> sw = new SanWeiRes<>();
         sw.setCode(200);
