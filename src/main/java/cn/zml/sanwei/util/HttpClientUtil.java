@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import static cn.zml.sanwei.common.Constant.TWO;
+
 
 /**
  * 获取图书信息工具类
@@ -41,7 +43,7 @@ public class HttpClientUtil {
         //获取作者简介
         String writer = null;
         Elements writerElements = doc.getElementsByClass("intro");
-        if (writerElements.size() < 2) {
+        if (writerElements.size() < TWO) {
             writer = null;
         } else {
             writer = writerElements.get(1).text().replaceAll(" ", "\n");

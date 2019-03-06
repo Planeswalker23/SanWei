@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static cn.zml.sanwei.common.Constant.SYSTEM_ERROR;
+
 /**
  * 图书控制层
  * @author  fanyidong
@@ -28,8 +30,8 @@ public class BookController {
         try {
             return SanWeiRes.success(bookService.queryAnyBooks());
         } catch (Exception e) {
-            e.printStackTrace();
-            return SanWeiRes.failed("系统错误，请联系管理员");
+            log.error(e.getMessage(), e);
+            return SanWeiRes.failed(SYSTEM_ERROR);
         }
     }
 
@@ -39,15 +41,20 @@ public class BookController {
         try {
             bookService.insertBooks(filePath);
         } catch (Exception e) {
-            e.printStackTrace();
-            return SanWeiRes.failed("系统错误，请联系管理员");
+            log.error(e.getMessage(), e);
+            return SanWeiRes.failed(SYSTEM_ERROR);
         }
         return SanWeiRes.success();
     }
 
     @GetMapping("/insertOthers")
     @Transactional(rollbackFor = Exception.class)
-    public String insertOthers() {
-        return bookService.insertDtailAndComment();
+    public SanWeiRes insertOthers() {
+        try {
+            return SanWeiRes.success(bookService.insertDetailAndComment());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return SanWeiRes.failed(SYSTEM_ERROR);
+        }
     }
 }

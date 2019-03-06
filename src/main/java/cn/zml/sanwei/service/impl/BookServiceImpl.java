@@ -5,7 +5,6 @@ import cn.zml.sanwei.dao.CommentDao;
 import cn.zml.sanwei.dao.DetailDao;
 import cn.zml.sanwei.model.Book;
 import cn.zml.sanwei.model.BookDetailComments;
-import cn.zml.sanwei.model.Comment;
 import cn.zml.sanwei.service.BookService;
 import cn.zml.sanwei.util.HttpClientUtil;
 import cn.zml.sanwei.util.ReadFileUtil;
@@ -38,22 +37,8 @@ public class BookServiceImpl implements BookService {
     CommentDao commentDao;
 
     @Override
-    public List<BookDetailComments> queryAnyBooks() {
-        // 查询图书
-        List<BookDetailComments> resList = bookDao.queryAnyBooks();
-        // 查询评论
-        List<Comment> comments = commentDao.getComments();
-        // 将评论与图书对应
-        for (int i=0; i<comments.size();i++) {
-            Comment commentDto = comments.get(i);
-            for (int j = 0; j < resList.size(); j++) {
-                if (commentDto.getBookId().equals(resList.get(j).getBookId())) {
-                    resList.get(j).getComments().add(commentDto);
-                    continue;
-                }
-            }
-        }
-        return resList;
+    public List<Book> queryAnyBooks() {
+        return bookDao.queryAnyBooks();
     }
 
     @Override
@@ -76,12 +61,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public String insertDtailAndComment() {
+    public String insertDetailAndComment() {
         // 获取所有书籍的信息
-        List<BookDetailComments> books = bookDao.queryAnyBooks();
+        List<Book> books = bookDao.queryAnyBooks();
+        // list对象转换
+        List<BookDetailComments> bookDetailComments = JSON.parseArray(JSON.toJSONString(books), BookDetailComments.class);
         // 插入失败的图书信息
         List<String> failList = new ArrayList<>();
-        for (BookDetailComments book : books) {
+        for (BookDetailComments book : bookDetailComments) {
             try {
                 // 获取书籍详情及评论
                 book = HttpClientUtil.getDetailAndComments(book);

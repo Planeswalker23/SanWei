@@ -1,6 +1,6 @@
 package cn.zml.sanwei.service;
 
-import cn.zml.sanwei.model.BookDetailComments;
+import cn.zml.sanwei.model.Book;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.List;
 public interface BookService {
 
     /**
-     * 查询所有书籍及评论
-     * @return
+     * 查询所有书籍
+     * @return list 图书
      */
-    List<BookDetailComments> queryAnyBooks();
+    List<Book> queryAnyBooks();
 
     /**
      * 批量插入
@@ -29,5 +29,5 @@ public interface BookService {
      * 根据book表数据插入另外两张表
      * @return
      */
-    String insertDtailAndComment();
+    String insertDetailAndComment();
 }

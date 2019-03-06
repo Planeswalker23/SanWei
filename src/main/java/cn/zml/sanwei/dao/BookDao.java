@@ -1,7 +1,6 @@
 package cn.zml.sanwei.dao;
 
 import cn.zml.sanwei.model.Book;
-import cn.zml.sanwei.model.BookDetailComments;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +24,7 @@ public interface BookDao {
      * 查询所有图书信息
      * @return list
      */
-    List<BookDetailComments> queryAnyBooks();
+    List<Book> queryAnyBooks();
 
     /**
      * 根据id查找book

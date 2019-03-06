@@ -8,8 +8,8 @@
         </foreach>
     </insert>
 
-    <select id="queryAnyBooks" resultType="cn.zml.sanwei.model.BookDetailComments">
-        select * from book where enable=1
+    <select id="queryAnyBooks" resultType="cn.zml.sanwei.model.Book">
+        select * from book where enable=1 order by createtime
     </select>
 
     <select id="countBookById" resultType="java.lang.Integer">
