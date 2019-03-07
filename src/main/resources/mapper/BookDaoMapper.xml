@@ -9,7 +9,7 @@
     </insert>
 
     <select id="queryAnyBooks" resultType="cn.zml.sanwei.model.Book">
-        select * from book where enable=1 order by createtime
+        select * from book where enable=1 order by createtime limit 1,100
     </select>
 
     <select id="countBookById" resultType="java.lang.Integer">
