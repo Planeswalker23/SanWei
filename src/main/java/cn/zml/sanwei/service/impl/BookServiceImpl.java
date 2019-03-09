@@ -37,8 +37,9 @@ public class BookServiceImpl implements BookService {
     CommentDao commentDao;
 
     @Override
-    public List<Book> queryAnyBooks() {
-        return bookDao.queryAnyBooks();
+    public BookDetailComments getBookById(String bookId) {
+        // 获取book所有信息
+        return bookDao.getAllBookContentById(bookId);
     }
 
     @Override

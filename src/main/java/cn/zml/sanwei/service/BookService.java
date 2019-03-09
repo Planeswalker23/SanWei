@@ -1,9 +1,7 @@
 package cn.zml.sanwei.service;
 
-import cn.zml.sanwei.model.Book;
+import cn.zml.sanwei.model.BookDetailComments;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author  fanyidong
@@ -13,10 +11,11 @@ import java.util.List;
 public interface BookService {
 
     /**
-     * 查询所有书籍
-     * @return list 图书
+     * 根据id查询书籍及所有评论信息
+     * @param bookId
+     * @return BookDetailComments
      */
-    List<Book> queryAnyBooks();
+    BookDetailComments getBookById(String bookId);
 
     /**
      * 批量插入

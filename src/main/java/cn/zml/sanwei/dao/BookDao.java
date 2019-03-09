@@ -1,6 +1,7 @@
 package cn.zml.sanwei.dao;
 
 import cn.zml.sanwei.model.Book;
+import cn.zml.sanwei.model.BookDetailComments;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +33,13 @@ public interface BookDao {
      * @return int
      */
     int countBookById(@Param("bookId") String bookId);
+
+    /**
+     * 根据id查找book所有信息
+     * @param bookId
+     * @return BookDetailComments
+     */
+    BookDetailComments getAllBookContentById(@Param("bookId") String bookId);
 
     /**
      * 根据书名、作者、类别查询是否有重复数据

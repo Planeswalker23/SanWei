@@ -25,10 +25,10 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    @GetMapping("/getBooks")
-    public SanWeiRes getBoos() {
+    @GetMapping("/getBookById")
+    public SanWeiRes getBookByIdController(String bookId) {
         try {
-            return SanWeiRes.success(bookService.queryAnyBooks());
+            return SanWeiRes.success(bookService.getBookById(bookId));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return SanWeiRes.failed(SYSTEM_ERROR);
@@ -57,4 +57,16 @@ public class BookController {
             return SanWeiRes.failed(SYSTEM_ERROR);
         }
     }
+
+    /**
+     * 根据类别获取图书
+     * @param type 类别代号
+     * @return
+     */
+    @GetMapping("getBooksByType")
+    public SanWeiRes getBooksByTypeController(Integer type) {
+
+        return SanWeiRes.success();
+    }
+
 }

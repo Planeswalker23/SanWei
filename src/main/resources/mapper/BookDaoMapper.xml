@@ -16,6 +16,13 @@
         select count(*) from book where bookid=#{bookId}
     </select>
 
+    <select id="getAllBookContentById" resultType="cn.zml.sanwei.model.BookDetailComments">
+        select * from book
+        inner join detail on detail.bookid=book.bookid
+        left join comment on comment.bookid=book.bookid
+        where book.bookid=#{bookId}
+    </select>
+
     <select id="queryBookByNameWriter" resultType="cn.zml.sanwei.model.Book" parameterType="cn.zml.sanwei.model.Book">
         select * from book where enable=1 and name = #{name} and writer = #{writer} and type = #{type}
     </select>
