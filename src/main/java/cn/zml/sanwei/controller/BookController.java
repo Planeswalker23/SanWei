@@ -25,7 +25,7 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    @GetMapping("/getBookById")
+    @PostMapping("/getBookById")
     public SanWeiRes getBookByIdController(String bookId) {
         try {
             return SanWeiRes.success(bookService.getBookById(bookId));
