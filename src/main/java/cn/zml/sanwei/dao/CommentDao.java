@@ -1,6 +1,7 @@
 package cn.zml.sanwei.dao;
 
 import cn.zml.sanwei.model.Comment;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
@@ -22,8 +23,9 @@ public interface CommentDao {
     int insertList(List<Comment> comments) throws SQLException;
 
     /**
-     * 查询所有书评
+     * 根据bookId查询所有书评
+     * @param bookId
      * @return list
      */
-    List<Comment> getComments();
+    List<Comment> getCommentsByBookId(@Param("bookId") String bookId);
 }

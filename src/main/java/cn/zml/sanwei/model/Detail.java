@@ -1,5 +1,7 @@
 package cn.zml.sanwei.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import static cn.zml.sanwei.common.Constant.THOUSAND;
 
 /**
@@ -13,6 +15,9 @@ public class Detail {
     private String writer;
     private String content;
     private String catalog;
+
+    private String createTime;
+    private String updateTime;
 
     public String getDetailId() {
         return detailId;
@@ -65,5 +70,23 @@ public class Detail {
         } else {
             this.catalog = catalog;
         }
+    }
+
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 }

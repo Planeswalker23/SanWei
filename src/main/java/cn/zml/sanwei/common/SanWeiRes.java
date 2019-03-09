@@ -1,5 +1,8 @@
 package cn.zml.sanwei.common;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
 /**
  * 公用返回类
  * @Author fanyidong
@@ -66,5 +69,11 @@ public class SanWeiRes<T> {
         sw.setCode(500);
         sw.setReason(reason);
         return sw;
+    }
+
+    @Override
+    public String toString() {
+        //返回json时只返回不为null的字段
+        return JSON.toJSONString(this, SerializerFeature.WriteMapNullValue);
     }
 }

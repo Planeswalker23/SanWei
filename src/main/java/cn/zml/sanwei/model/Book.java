@@ -1,6 +1,6 @@
 package cn.zml.sanwei.model;
 
-import java.util.Date;
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * book实体类
@@ -25,10 +25,8 @@ public class Book {
     private String no;
     private String detailUrl;
 
-    private Date createTime;
-    private Date updateTime;
-    private Integer enable;
-
+    private String createTime;
+    private String updateTime;
 
     public String getBookId() {
         return bookId;
@@ -134,27 +132,21 @@ public class Book {
         this.no = no;
     }
 
-    public Date getCreateTime() {
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getEnable() {
-        return enable;
-    }
-
-    public void setEnable(Integer enable) {
-        this.enable = enable;
     }
 }

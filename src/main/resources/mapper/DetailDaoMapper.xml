@@ -4,4 +4,8 @@
     <insert id="insertList" parameterType="cn.zml.sanwei.model.Detail">
         insert into detail values (#{detailId},#{bookId},#{writer},#{content},#{catalog},now(),now())
     </insert>
+
+    <select id="getDetailById" resultType="cn.zml.sanwei.model.Detail">
+        select * from detail where bookid=#{bookId}
+    </select>
 </mapper>

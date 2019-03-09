@@ -4,26 +4,23 @@
     <insert id="insertAnyFieldsByList">
         insert into book values
         <foreach collection="list" item="item" index="index" separator=",">
-            (uuid(),#{item.name},#{item.writer},#{item.publisher},#{item.date},#{item.img},#{item.type},#{item.introduce},#{item.grade},#{item.people},#{item.price},#{item.no},#{item.detailUrl},now(),now(),1)
+            (uuid(),#{item.name},#{item.writer},#{item.publisher},#{item.date},#{item.img},#{item.type},#{item.introduce},#{item.grade},#{item.people},#{item.price},#{item.no},#{item.detailUrl},now(),now())
         </foreach>
     </insert>
 
     <select id="queryAnyBooks" resultType="cn.zml.sanwei.model.Book">
-        select * from book where enable=1 order by createtime limit 1,100
+        select * from book order by createtime limit 1,100
     </select>
 
     <select id="countBookById" resultType="java.lang.Integer">
         select count(*) from book where bookid=#{bookId}
     </select>
 
-    <select id="getAllBookContentById" resultType="cn.zml.sanwei.model.BookDetailComments">
-        select * from book
-        inner join detail on detail.bookid=book.bookid
-        left join comment on comment.bookid=book.bookid
-        where book.bookid=#{bookId}
+    <select id="getAllBookContentById" resultType="cn.zml.sanwei.model.Book">
+        select * from book where book.bookid=#{bookId}
     </select>
 
     <select id="queryBookByNameWriter" resultType="cn.zml.sanwei.model.Book" parameterType="cn.zml.sanwei.model.Book">
-        select * from book where enable=1 and name = #{name} and writer = #{writer} and type = #{type}
+        select * from book where name = #{name} and writer = #{writer} and type = #{type}
     </select>
 </mapper>

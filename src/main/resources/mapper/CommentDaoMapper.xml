@@ -8,7 +8,7 @@
         </foreach>
     </insert>
 
-    <select id="getComments" resultType="cn.zml.sanwei.model.Comment">
-        select * from comment
+    <select id="getCommentsByBookId" resultType="cn.zml.sanwei.model.Comment">
+        select * from comment where bookid=#{bookId} order by createtime desc
     </select>
 </mapper>

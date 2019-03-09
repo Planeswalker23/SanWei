@@ -1,5 +1,7 @@
 package cn.zml.sanwei.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.UUID;
 
 /**
@@ -14,6 +16,8 @@ public class Comment {
     private String commentContent;
     private String commentDate;
     private String comentGrade;
+    private String createTime;
+    private String updateTime;
 
     public Comment() {
     }
@@ -73,5 +77,23 @@ public class Comment {
 
     public void setComentGrade(String comentGrade) {
         this.comentGrade = comentGrade;
+    }
+
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 }

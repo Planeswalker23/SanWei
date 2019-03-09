@@ -5,12 +5,15 @@ import cn.zml.sanwei.dao.CommentDao;
 import cn.zml.sanwei.dao.DetailDao;
 import cn.zml.sanwei.model.Book;
 import cn.zml.sanwei.model.BookDetailComments;
+import cn.zml.sanwei.model.Comment;
+import cn.zml.sanwei.model.Detail;
 import cn.zml.sanwei.service.BookService;
 import cn.zml.sanwei.util.HttpClientUtil;
 import cn.zml.sanwei.util.ReadFileUtil;
 import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +42,17 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDetailComments getBookById(String bookId) {
         // 获取book所有信息
-        return bookDao.getAllBookContentById(bookId);
+        Book book = bookDao.getAllBookContentById(bookId);
+        // 获取图书详情
+        Detail detail = detailDao.getDetailById(bookId);
+        // 获取书评
+        List<Comment> comments = commentDao.getCommentsByBookId(bookId);
+        // 返回的图书所有信息
+        BookDetailComments allBookContent = new BookDetailComments();
+        BeanUtils.copyProperties(book, allBookContent);
+        allBookContent.setDetail(detail);
+        allBookContent.setComments(comments);
+        return allBookContent;
     }
 
     @Override
