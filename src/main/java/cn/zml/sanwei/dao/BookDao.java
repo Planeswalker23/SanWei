@@ -46,4 +46,11 @@ public interface BookDao {
      * @return Book对象
      */
     Book queryBookByNameWriter(Book book);
+
+    /**
+     * 查询评分前十的图书
+     * 排序规则：评分>评论人数>出版日期 desc
+     * @return
+     */
+    List<Book> getGradeTop10();
 }

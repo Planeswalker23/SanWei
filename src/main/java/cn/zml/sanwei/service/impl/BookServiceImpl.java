@@ -111,4 +111,9 @@ public class BookServiceImpl implements BookService {
         // 返回失败的数据
         return JSON.toJSONString(failList);
     }
+
+    @Override
+    public List<Book> getGradeTop10() {
+        return bookDao.getGradeTop10();
+    }
 }

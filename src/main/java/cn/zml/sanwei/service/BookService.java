@@ -1,7 +1,10 @@
 package cn.zml.sanwei.service;
 
+import cn.zml.sanwei.model.Book;
 import cn.zml.sanwei.model.BookDetailComments;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author  fanyidong
@@ -29,4 +32,11 @@ public interface BookService {
      * @return
      */
     String insertDetailAndComment();
+
+    /**
+     * 查询评分前十的图书
+     * 排序规则：评分>评论人数>出版日期 desc
+     * @return
+     */
+    List<Book> getGradeTop10();
 }

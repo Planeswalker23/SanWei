@@ -69,4 +69,9 @@ public class BookController {
         return SanWeiRes.success();
     }
 
+    @PostMapping("getGradeTop10")
+    public SanWeiRes getGradeTop10Controller() {
+        return SanWeiRes.success(bookService.getGradeTop10());
+    }
+
 }

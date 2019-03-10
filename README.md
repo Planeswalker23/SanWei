@@ -49,3 +49,100 @@ bookId:ce703fd2-3e62-11e9-8f83-1c2b8518ea4c
 	}
 }
 ```
+
+## 1. 获取评分前十的图书
+* url地址：/getGradeTop10
+* 请求方式：post
+* 参数：
+```$xslt
+无
+```  
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": null,
+    "res": [
+        {
+            "bookId": "ce72a86c-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "Modernist Cuisine",
+            "writer": "NathanMyhrvold、ChrisYoung、MaximeBilet",
+            "img": "https://img3.doubanio.com/view/subject/l/public/s27280490.jpg",
+            "grade": "9.8",
+            "people": "68"
+        },
+        {
+            "bookId": "ce71fdb8-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "姚著中国史",
+            "writer": "姚大中",
+            "img": "https://img1.doubanio.com/view/subject/l/public/s29302238.jpg",
+            "grade": "9.8",
+            "people": "164"
+        },
+        {
+            "bookId": "ce70f80a-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "深入浅出数字信号处理",
+            "writer": "江志红",
+            "img": "https://img1.doubanio.com/view/subject/l/public/s8888419.jpg",
+            "grade": "9.7",
+            "people": "33"
+        },
+        {
+            "bookId": "ce71aa70-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "珍爱生命",
+            "writer": "刘文利编",
+            "img": "https://img1.doubanio.com/view/subject/l/public/s28837989.jpg",
+            "grade": "9.7",
+            "people": "164"
+        },
+        {
+            "bookId": "ce71b2fe-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "艺术的故事",
+            "writer": "[英]贡布里希(SirE.H.Gombrich)/范景中、杨成凯",
+            "img": "https://img3.doubanio.com/view/subject/l/public/s3219163.jpg",
+            "grade": "9.6",
+            "people": "8610"
+        },
+        {
+            "bookId": "ce7219ce-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "红楼梦",
+            "writer": "[清]曹雪芹著、高鹗续",
+            "img": "https://img1.doubanio.com/view/subject/l/public/s1070959.jpg",
+            "grade": "9.6",
+            "people": "145336"
+        },
+        {
+            "bookId": "ce70a206-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "经济学原理(第7版):微观经济学分册+宏观经济学分册(套装共2册)",
+            "writer": "曼昆(N.GregoryMankiw)/梁小民、梁砾",
+            "img": "https://img1.doubanio.com/view/subject/l/public/s28120578.jpg",
+            "grade": "9.6",
+            "people": "1099"
+        },
+        {
+            "bookId": "ce727fb8-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "抗日战争正面战场（上中下）",
+            "writer": "中国第二历史档案馆",
+            "img": "https://img1.doubanio.com/view/subject/l/public/s9069467.jpg",
+            "grade": "9.5",
+            "people": "78"
+        },
+        {
+            "bookId": "ce728c56-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "麒麟之生死與共",
+            "writer": "桔子樹",
+            "img": "https://img1.doubanio.com/view/subject/l/public/s6781748.jpg",
+            "grade": "9.5",
+            "people": "2194"
+        },
+        {
+            "bookId": "ce71e044-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "史记（全十册）",
+            "writer": "司马迁/（索引）司马贞，（正义）张守节",
+            "img": "https://img3.doubanio.com/view/subject/l/public/s1953384.jpg",
+            "grade": "9.5",
+            "people": "13370"
+        }
+    ]
+}
+```
