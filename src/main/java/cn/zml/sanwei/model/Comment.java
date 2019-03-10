@@ -1,6 +1,7 @@
 package cn.zml.sanwei.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import java.util.UUID;
  * @author  fanyidong
  * @date Created in 2018/11/29
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Comment {
 
     private String commentId;

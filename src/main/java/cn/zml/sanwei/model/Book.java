@@ -1,12 +1,19 @@
 package cn.zml.sanwei.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * book实体类
  * @author  fanyidong
  * @date Created in 2018/11/29
  */
+
+/**
+ * @JsonInclude
+ * 对象属性值为空时不返回该属性
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Book {
     private String bookId;
     private String name;

@@ -1,6 +1,7 @@
 package cn.zml.sanwei.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import static cn.zml.sanwei.common.Constant.THOUSAND;
 
@@ -8,6 +9,7 @@ import static cn.zml.sanwei.common.Constant.THOUSAND;
  * @author  fanyidong
  * @date Created in 2018/11/29
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Detail {
 
     private String detailId;
