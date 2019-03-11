@@ -26,6 +26,7 @@ public class BookController {
     BookService bookService;
 
     @PostMapping("/getBookById")
+    @Transactional(rollbackFor = Exception.class)
     public SanWeiRes getBookByIdController(String bookId) {
         try {
             return SanWeiRes.success(bookService.getBookById(bookId));
@@ -64,12 +65,14 @@ public class BookController {
      * @return
      */
     @GetMapping("getBooksByType")
+    @Transactional(rollbackFor = Exception.class)
     public SanWeiRes getBooksByTypeController(Integer type) {
 
         return SanWeiRes.success();
     }
 
     @PostMapping("getGradeTop10")
+    @Transactional(rollbackFor = Exception.class)
     public SanWeiRes getGradeTop10Controller() {
         return SanWeiRes.success(bookService.getGradeTop10());
     }
