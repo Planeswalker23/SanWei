@@ -7,7 +7,7 @@
     <!-- 存放日志文件路径 -->
     <!--<springProperty scope="context" name="LOG_HOME" source="logging.base-home" default="myLogFile"/>-->
     <springProperty scope="context" name="APPLICATION_NAME" source="spring.application.name"/>
-    <property  name="LOG_HOME" value="/root/logs" />
+    <property  name="LOG_HOME" value="logs" />
     <!--<property  name="LOG_HOME" value="logs" />-->
     <property name="APPLICATION_NAME" value="sanwei"/>
 
