@@ -25,29 +25,6 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    @PostMapping("/getBookById")
-    @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getBookByIdController(String bookId) {
-        try {
-            return SanWeiRes.success(bookService.getBookById(bookId));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return SanWeiRes.failed(SYSTEM_ERROR);
-        }
-    }
-
-    @PostMapping("getGradeTop10")
-    @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getGradeTop10Controller() {
-        return SanWeiRes.success(bookService.getGradeTop10());
-    }
-
-    @PostMapping("getBooksByType")
-    @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getFeatureBooksController(Integer type, Integer pageNum, Integer pageSize) {
-        return SanWeiRes.success(bookService.getBookByType(type, pageNum,pageSize));
-    }
-
     @PostMapping("/insertBooks")
     @Transactional(rollbackFor = Exception.class)
     public SanWeiRes insertBooks(String filePath) {
@@ -81,6 +58,29 @@ public class BookController {
             log.error(e.getMessage(), e);
             return SanWeiRes.failed(e.getCause().toString());
         }
+    }
+
+    @PostMapping("/getBookById")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes getBookByIdController(String bookId) {
+        try {
+            return SanWeiRes.success(bookService.getBookById(bookId));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return SanWeiRes.failed(SYSTEM_ERROR);
+        }
+    }
+
+    @PostMapping("getGradeTop10")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes getGradeTop10Controller() {
+        return SanWeiRes.success(bookService.getGradeTop10());
+    }
+
+    @PostMapping("getBooksByType")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes getFeatureBooksController(Integer type, Integer pageNum, Integer pageSize) {
+        return SanWeiRes.success(bookService.getBookByType(type, pageNum,pageSize));
     }
 
 }
