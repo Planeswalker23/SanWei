@@ -15,7 +15,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 import java.util.UUID;
 
@@ -113,5 +118,33 @@ public class HttpClientUtil {
             }
         }
         return result;
+    }
+
+    /**
+     * 使用URLConnection下载文件或图片并保存到本地
+     * @param urlString img路径地址
+     * @param filename 文件名
+     * @throws Exception
+     */
+    public static void downloadImg(String urlString, String filename) throws Exception {
+        // 构造URL
+        URL url = new URL(urlString);
+        // 打开连接
+        URLConnection con = url.openConnection();
+        // 输入流
+        InputStream is = con.getInputStream();
+        // 1K的数据缓冲
+        byte[] bs = new byte[1024];
+        // 读取到的数据长度
+        int len;
+        // 输出的文件流
+        OutputStream os = new FileOutputStream(filename);
+        // 开始读取
+        while ((len = is.read(bs)) != -1) {
+            os.write(bs, 0, len);
+        }
+        // 完毕，关闭所有链接
+        os.close();
+        is.close();
     }
 }
