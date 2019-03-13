@@ -2,6 +2,7 @@ package cn.zml.sanwei.service;
 
 import cn.zml.sanwei.model.Book;
 import cn.zml.sanwei.model.BookDetailComments;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,4 +40,18 @@ public interface BookService {
      * @return
      */
     List<Book> getGradeTop10();
+
+    /**
+     * 根据类型查询书籍
+     * @param type 类型
+     * @param pageNum 页码
+     * @param pageSize 每页数目
+     * @return BookDetailComments
+     */
+    PageInfo<Book> getBookByType(Integer type, Integer pageNum, Integer pageSize);
+
+    /**
+     * 下载所有书籍的封面
+     */
+    void downloadImg() throws Exception;
 }

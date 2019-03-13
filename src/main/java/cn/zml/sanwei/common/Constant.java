@@ -28,6 +28,12 @@ public interface Constant {
     Integer MILITARY = 9;
     Integer FOOD = 10;
 
+    /**
+     * 好书推荐
+     */
+    Integer GOOD_BOOK = 11;
+    Integer RANDOM_BOOK = 12;
+
     String SYSTEM_ERROR = "系统错误，请联系管理员";
 
 }

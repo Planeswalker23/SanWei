@@ -59,22 +59,28 @@ public class BookController {
         }
     }
 
-    /**
-     * 根据类别获取图书
-     * @param type 类别代号
-     * @return
-     */
-    @GetMapping("getBooksByType")
-    @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getBooksByTypeController(Integer type) {
-
-        return SanWeiRes.success();
-    }
-
     @PostMapping("getGradeTop10")
     @Transactional(rollbackFor = Exception.class)
     public SanWeiRes getGradeTop10Controller() {
         return SanWeiRes.success(bookService.getGradeTop10());
+    }
+
+    @PostMapping("getBooksByType")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes getFeatureBooksController(Integer type, Integer pageNum, Integer pageSize) {
+        return SanWeiRes.success(bookService.getBookByType(type, pageNum,pageSize));
+    }
+
+    @GetMapping("downloadImg")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes downloadImgController() {
+        try {
+            bookService.downloadImg();
+            return SanWeiRes.success();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return SanWeiRes.failed(e.getCause().toString());
+        }
     }
 
 }

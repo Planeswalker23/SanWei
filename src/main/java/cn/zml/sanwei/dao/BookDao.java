@@ -53,4 +53,23 @@ public interface BookDao {
      * @return
      */
     List<Book> getGradeTop10();
+
+    /**
+     * 根据类型查询book
+     * @param type 类型
+     * @return
+     */
+    List<Book> getBooksByType(@Param("type") Integer type);
+
+    /**
+     * 查询分数大于8的书籍
+     * @return
+     */
+    List<Book> getBooksWhichGradeOver8();
+
+    /**
+     * 随机查询几条数据
+     * @return
+     */
+    List<Book> getBooksOrderByPeople();
 }

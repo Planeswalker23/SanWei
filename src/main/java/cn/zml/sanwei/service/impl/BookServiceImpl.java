@@ -11,6 +11,8 @@ import cn.zml.sanwei.service.BookService;
 import cn.zml.sanwei.util.HttpClientUtil;
 import cn.zml.sanwei.util.ReadFileUtil;
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +23,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static cn.zml.sanwei.common.Constant.*;
 
 /**
  * @author  fanyidong
@@ -115,5 +119,33 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getGradeTop10() {
         return bookDao.getGradeTop10();
+    }
+
+    @Override
+    public PageInfo<Book> getBookByType(Integer type, Integer pageNum, Integer pageSize) {
+        // 设置分页信息
+        PageHelper.startPage(pageNum, pageSize);
+        // 查询结果
+        List<Book> list;
+        // 如果type属于1~10，则按照类型查询,11-特色书籍，12-好书推荐
+        if (type.equals(RANDOM_BOOK)) {
+            list = bookDao.getBooksOrderByPeople();
+        } else if (type.equals(GOOD_BOOK)) {
+            list = bookDao.getBooksWhichGradeOver8();
+        } else {
+            list = bookDao.getBooksByType(type);
+        }
+        return new PageInfo<>(list);
+    }
+
+    @Override
+    public void downloadImg() throws Exception {
+        List<Book> books = bookDao.queryAnyBooks();
+        for (Book book:books) {
+            String url = book.getImg();
+            String no = book.getNo();
+            HttpClientUtil.downloadImg(url, "logs/img/" + no+".png");
+            log.info(book.getName() + "封面下载完成");
+        }
     }
 }
