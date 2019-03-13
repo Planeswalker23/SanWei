@@ -36,6 +36,18 @@ public class BookController {
         }
     }
 
+    @PostMapping("getGradeTop10")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes getGradeTop10Controller() {
+        return SanWeiRes.success(bookService.getGradeTop10());
+    }
+
+    @PostMapping("getBooksByType")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes getFeatureBooksController(Integer type, Integer pageNum, Integer pageSize) {
+        return SanWeiRes.success(bookService.getBookByType(type, pageNum,pageSize));
+    }
+
     @PostMapping("/insertBooks")
     @Transactional(rollbackFor = Exception.class)
     public SanWeiRes insertBooks(String filePath) {
@@ -57,18 +69,6 @@ public class BookController {
             log.error(e.getMessage(), e);
             return SanWeiRes.failed(SYSTEM_ERROR);
         }
-    }
-
-    @PostMapping("getGradeTop10")
-    @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getGradeTop10Controller() {
-        return SanWeiRes.success(bookService.getGradeTop10());
-    }
-
-    @PostMapping("getBooksByType")
-    @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getFeatureBooksController(Integer type, Integer pageNum, Integer pageSize) {
-        return SanWeiRes.success(bookService.getBookByType(type, pageNum,pageSize));
     }
 
     @GetMapping("downloadImg")
