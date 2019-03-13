@@ -42,4 +42,8 @@
     <select id="getBooksOrderByPeople" resultType="cn.zml.sanwei.model.Book">
         select * from book where grade > 8 order by people desc,grade desc,date desc
     </select>
+
+    <select id="getBooksOrderByDate" resultType="cn.zml.sanwei.model.Book">
+        select * from book order by date desc,grade desc,people desc limit 0,20
+    </select>
 </mapper>

@@ -72,4 +72,10 @@ public interface BookDao {
      * @return
      */
     List<Book> getBooksOrderByPeople();
+
+    /**
+     * 根据出版日期降序取前20本
+     * @return
+     */
+    List<Book> getBooksOrderByDate();
 }

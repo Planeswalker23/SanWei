@@ -15,13 +15,6 @@ import java.util.List;
 public interface BookService {
 
     /**
-     * 根据id查询书籍及所有评论信息
-     * @param bookId
-     * @return BookDetailComments
-     */
-    BookDetailComments getBookById(String bookId);
-
-    /**
      * 批量插入
      * @param filePath
      * @return
@@ -33,6 +26,19 @@ public interface BookService {
      * @return
      */
     String insertDetailAndComment();
+
+    /**
+     * 下载所有书籍的封面
+     * @throws Exception
+     */
+    void downloadImg() throws Exception;
+
+    /**
+     * 根据id查询书籍及所有评论信息
+     * @param bookId
+     * @return BookDetailComments
+     */
+    BookDetailComments getBookById(String bookId);
 
     /**
      * 查询评分前十的图书
@@ -51,8 +57,8 @@ public interface BookService {
     PageInfo<Book> getBookByType(Integer type, Integer pageNum, Integer pageSize);
 
     /**
-     * 下载所有书籍的封面
-     * @throws Exception
+     * 根据出版日期降序取前20本
+     * @return
      */
-    void downloadImg() throws Exception;
+    List<Book> getBooksOrderByDate();
 }

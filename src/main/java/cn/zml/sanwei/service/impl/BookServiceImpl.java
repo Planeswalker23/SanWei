@@ -44,22 +44,6 @@ public class BookServiceImpl implements BookService {
     CommentDao commentDao;
 
     @Override
-    public BookDetailComments getBookById(String bookId) {
-        // 获取book所有信息
-        Book book = bookDao.getAllBookContentById(bookId);
-        // 获取图书详情
-        Detail detail = detailDao.getDetailById(bookId);
-        // 获取书评
-        List<Comment> comments = commentDao.getCommentsByBookId(bookId);
-        // 返回的图书所有信息
-        BookDetailComments allBookContent = new BookDetailComments();
-        BeanUtils.copyProperties(book, allBookContent);
-        allBookContent.setDetail(detail);
-        allBookContent.setComments(comments);
-        return allBookContent;
-    }
-
-    @Override
     public void insertBooks(String filePath) {
         String content = ReadFileUtil.readFileByLines(filePath);
         List<Book> books = JSON.parseArray(content, Book.class);
@@ -117,6 +101,33 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void downloadImg() throws Exception {
+        List<Book> books = bookDao.queryAnyBooks();
+        for (Book book:books) {
+            String url = book.getImg();
+            String no = book.getNo();
+            HttpClientUtil.downloadImg(url, "logs/img/" + no+".png");
+            log.info(book.getName() + "封面下载完成");
+        }
+    }
+
+    @Override
+    public BookDetailComments getBookById(String bookId) {
+        // 获取book所有信息
+        Book book = bookDao.getAllBookContentById(bookId);
+        // 获取图书详情
+        Detail detail = detailDao.getDetailById(bookId);
+        // 获取书评
+        List<Comment> comments = commentDao.getCommentsByBookId(bookId);
+        // 返回的图书所有信息
+        BookDetailComments allBookContent = new BookDetailComments();
+        BeanUtils.copyProperties(book, allBookContent);
+        allBookContent.setDetail(detail);
+        allBookContent.setComments(comments);
+        return allBookContent;
+    }
+
+    @Override
     public List<Book> getGradeTop10() {
         return bookDao.getGradeTop10();
     }
@@ -139,13 +150,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void downloadImg() throws Exception {
-        List<Book> books = bookDao.queryAnyBooks();
-        for (Book book:books) {
-            String url = book.getImg();
-            String no = book.getNo();
-            HttpClientUtil.downloadImg(url, "logs/img/" + no+".png");
-            log.info(book.getName() + "封面下载完成");
-        }
+    public List<Book> getBooksOrderByDate() {
+        return bookDao.getBooksOrderByDate();
     }
 }
