@@ -52,6 +52,7 @@ public interface BookService {
 
     /**
      * 下载所有书籍的封面
+     * @throws Exception
      */
     void downloadImg() throws Exception;
 }
