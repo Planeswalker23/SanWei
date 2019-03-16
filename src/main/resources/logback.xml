@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- scan="true"    当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。 -->
+<!--  scanPeriod="30 seconds"   设置每30秒自动扫描,若没有指定具体单位则以milliseconds为标准(单位:milliseconds, seconds, minutes or hours)  -->
+<!-- debug="false"当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
+<configuration  scan="true" scanPeriod="30 seconds">
+    <!-- 存放日志文件路径 -->
+    <!--<springProperty scope="context" name="LOG_HOME" source="logging.base-home" default="myLogFile"/>-->
+    <springProperty scope="context" name="APPLICATION_NAME" source="spring.application.name"/>
+    <property  name="LOG_HOME" value="/mnt/logs" />
+    <!--<property  name="LOG_HOME" value="logs" />-->
+    <property name="APPLICATION_NAME" value="sanwei"/>
+
+    <!-- INFO级别 -->
+    <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- 级别过滤器 -->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--&lt;!&ndash; 设置过滤级别 &ndash;&gt;-->
+            <!--<level>INFO</level>-->
+            <!--&lt;!&ndash; 用于配置符合过滤条件的操作 &ndash;&gt;-->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--&lt;!&ndash; 用于配置不符合过滤条件的操作 &ndash;&gt;-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+        <!--<File>${LOG_HOME}/${APPLICATION_NAME}/info/info.log</File>        &lt;!&ndash; 根据时间来制定滚动策略 &ndash;&gt;-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${LOG_HOME}/${APPLICATION_NAME}/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.%i.log
+            </FileNamePattern>
+            <!-- 多久后自动清楚旧的日志文件,单位:月 -->
+            <MaxHistory>1</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 默认值是 10MB,文档最大值 -->
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 控制java下面包的打印,没设置等级,将继承上级root的等级 -->
+    <logger name="tk.mybatis" level="DEBUG"/>
+    <logger name="cn.fyd" level="DEBUG"/>
+    <logger name="com.dy.springboot.server.mapper" level="DEBUG"/>
+
+    <!-- 当前日志总级别为TRACE、DEBUG、INFO、 WARN、ERROR、ALL和 OF -->
+    <!-- the level of the root level is set to DEBUG by default.       -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE_INFO" />
+    </root>
+</configuration>
