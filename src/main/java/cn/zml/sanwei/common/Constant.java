@@ -23,21 +23,24 @@ public interface Constant {
      * 图书类别
      * 1-小说 2-经济 3-管理 4-教育 5-文化 6-历史 7-文学 8-名著 9-军事 10-美食
      */
-    Integer STROY = 1;
-    Integer ECONOMICS = 2;
-    Integer MANAGE = 3;
-    Integer EDUCATION = 4;
-    Integer CULTURE = 5;
-    Integer HISTORY = 6;
-    Integer LITERATURE = 7;
-    Integer MASTERWORK = 8;
-    Integer MILITARY = 9;
-    Integer FOOD = 10;
+    Integer ONE_STROY = 1;
+    Integer TWO_ECONOMICS = 2;
+    Integer THREE_MANAGE = 3;
+    Integer FOUR_EDUCATION = 4;
+    Integer FIVE_CULTURE = 5;
+    Integer SIX_HISTORY = 6;
+    Integer SEVEN_LITERATURE = 7;
+    Integer EIGHT_MASTERWORK = 8;
+    Integer NINE_MILITARY = 9;
+    Integer TEN_FOOD = 10;
 
     /**
      * 好书推荐
      */
     Integer GOOD_BOOK = 11;
+    /**
+     * 特色书籍
+     */
     Integer RANDOM_BOOK = 12;
 
     String SYSTEM_ERROR = "系统错误，请联系管理员";
