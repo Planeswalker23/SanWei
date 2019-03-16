@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.zml.sanwei.dao.BookDao">
+
+    <!-- 根据name不重复 -->
+    <sql id="fields">
+        bookid,distinct(name),writer,publisher,date,img,type,introduce,grade,people,price,no
+    </sql>
+
     <insert id="insertAnyFieldsByList">
         insert into book values
         <foreach collection="list" item="item" index="index" separator=",">
@@ -25,7 +31,7 @@
     </select>
 
     <select id="getGradeTop10" resultType="cn.zml.sanwei.model.Book">
-        select bookid,img,name,writer,grade,people from book order by grade desc,people desc,date desc limit 0,10
+        select bookid,img,distinct(name),writer,grade,people from book order by grade desc,people desc,date desc limit 0,10
     </select>
 
     <select id="getBooksByType" resultType="cn.zml.sanwei.model.Book">
@@ -36,14 +42,14 @@
     </select>
 
     <select id="getBooksWhichGradeOver8" resultType="cn.zml.sanwei.model.Book">
-        select * from book where grade > 8 order by grade desc,people desc,date desc
+        select <include refid="fields" /> from book where grade > 8 order by grade desc,people desc,date desc
     </select>
 
     <select id="getBooksOrderByPeople" resultType="cn.zml.sanwei.model.Book">
-        select * from book where grade > 8 order by people desc,grade desc,date desc
+        select <include refid="fields" /> from book where grade > 8 order by people desc,grade desc,date desc
     </select>
 
     <select id="getBooksOrderByDate" resultType="cn.zml.sanwei.model.Book">
-        select * from book order by date desc,grade desc,people desc limit 0,20
+        select <include refid="fields" /> from book order by date desc,grade desc,people desc limit 0,20
     </select>
 </mapper>
