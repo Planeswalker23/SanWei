@@ -26,8 +26,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private MailDao mailDao;
 
     @Override
     public User login(String account, String password) throws SanweiException {
