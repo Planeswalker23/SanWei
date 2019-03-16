@@ -168,3 +168,92 @@ pageSize:10 (每页显示的数目)
     ]
 }
 ```
+
+## 5. 注册
+* url地址：/apply
+* 请求方式：post
+* 参数：
+```$xslt
+account:zhangzhang
+password:1
+email:123@qq.com
+mobile:10086
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": "成功",
+    "res": null
+}
+```
+
+## 6. 登录
+* url地址：/login
+* 请求方式：post
+* 参数：
+```$xslt
+account:dd
+password:1
+```  
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": null,
+    "res": {
+        "userId": "8f00b259-47e3-11e9-9e5f-00163e0097c7",
+        "account": "zhangzhang",
+        "password": "c4ca4238a0b923820dcc509a6f75849b",
+        "mobile": "10086",
+        "email": "1235@qq.com",
+        "createTime": "2019-03-16 20:03:49.0",
+        "updateTime": "2019-03-16 20:05:09.0"
+    }
+}
+```
+
+
+
+## 3. 获取个人信息
+* url地址：/userInfo
+* 请求方式：post
+* 参数：
+```$xslt
+userId:8f00b259-47e3-11e9-9e5f-00163e0097c7
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": null,
+    "res": {
+        "userId": "8f00b259-47e3-11e9-9e5f-00163e0097c7",
+        "account": "zhangzhang",
+        "password": "c4ca4238a0b923820dcc509a6f75849b",
+        "mobile": "10086",
+        "email": "1235@qq.com",
+        "createTime": "2019-03-16 20:03:49.0",
+        "updateTime": "2019-03-16 20:05:09.0"
+    }
+}
+```
+
+## 4. 修改个人信息
+* url地址：/apply
+* 请求方式：post
+* 参数：
+```$xslt
+userId:8f00b259-47e3-11e9-9e5f-00163e0097c7
+account:zhangzhang
+email:1234@qq.com
+mobile:10086
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": "成功",
+    "res": null
+}
+```

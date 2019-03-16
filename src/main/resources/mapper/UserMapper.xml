@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zml.sanwei.dao.UserDao">
+    <sql id="Example_Where_Clause">
+        <trim prefix="where 1=1">
+            <if test="userId!=null and userId!=''">and userid=#{userId}</if>
+            <if test="account!=null and account!=''">and account=#{account}</if>
+            <if test="password!=null and password!=''">and password=#{password}</if>
+            <if test="mobile!=null and mobile!=''">and mobile=#{mobile}</if>
+            <if test="email!=null and email!=''">and email=#{email}</if>
+        </trim>
+    </sql>
+
+    <sql id="Example_Set_Clause">
+        <trim prefix="set">
+            <if test="userId!=null and userId!=''">userid=#{userId},</if>
+            <if test="account!=null and account!=''">account=#{account},</if>
+            <if test="password!=null and password!=''">password=#{password},</if>
+            <if test="mobile!=null and mobile!=''">mobile=#{mobile},</if>
+            <if test="email!=null and email!=''">email=#{email},</if>
+        </trim>updatetime=now()
+    </sql>
+
+    <insert id="addUser" parameterType="cn.zml.sanwei.model.User">
+        insert into user
+        <trim prefix="(" suffix=")">
+            userid,
+            <if test="account!=null and account!=''">account,</if>
+            <if test="password!=null and password!=''">password,</if>
+            <if test="mobile!=null and mobile!=''">mobile,</if>
+            <if test="email!=null and email!=''">email,</if>
+            createtime,updatetime
+        </trim> values <trim prefix="(" suffix=")" suffixOverrides=",">
+            <choose>
+                <when test="userId!=null and userId!=''">#{userId,jdbcType=VARCHAR},</when>
+                <otherwise>uuid(),</otherwise>
+            </choose>
+            <if test="account!=null and account!=''">#{account,jdbcType=VARCHAR},</if>
+            <if test="password!=null and password!=''">#{password,jdbcType=VARCHAR},</if>
+            <if test="mobile!=null and mobile!=''">#{mobile,jdbcType=VARCHAR},</if>
+            <if test="email!=null and email!=''">#{email,jdbcType=VARCHAR},</if>
+            now(),now()
+        </trim>
+    </insert>
+
+    <select id="countUser" parameterType="cn.zml.sanwei.model.User" resultType="java.lang.Integer">
+        select count(*) from user <include refid="Example_Where_Clause" />
+    </select>
+
+    <select id="queryBySelective" resultType="cn.zml.sanwei.model.User">
+        select * from user <include refid="Example_Where_Clause" />
+    </select>
+
+    <update id="editByUserId" parameterType="cn.zml.sanwei.model.User">
+        update user <include refid="Example_Set_Clause" /> where userid=#{userId, jdbcType=VARCHAR}
+    </update>
+
+    <select id="queryByEmail" resultType="cn.zml.sanwei.model.User">
+        select * from user where email=#{email, jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryBySelectiveNotUserId" resultType="cn.zml.sanwei.model.User" parameterType="cn.zml.sanwei.model.User">
+        select * from user where (email=#{email, jdbcType=VARCHAR} or account=#{account, jdbcType=VARCHAR}) and userid!=#{userId, jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryByAccount" parameterType="java.lang.String" resultType="cn.zml.sanwei.model.User">
+        select * from user where account=#{account}
+    </select>
+
+    <select id="queryByUserId" parameterType="java.lang.String" resultType="cn.zml.sanwei.model.User">
+        select * from user where userid=#{userId}
+    </select>
+</mapper>

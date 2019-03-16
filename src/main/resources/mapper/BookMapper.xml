@@ -31,12 +31,12 @@
     </select>
 
     <select id="getGradeTop10" resultType="cn.zml.sanwei.model.Book">
-        select bookid,img,name,writer,grade,people from book
+        select <include refid="fields" /> from book
         group by name order by grade desc,people desc,date desc limit 0,10
     </select>
 
     <select id="getBooksByType" resultType="cn.zml.sanwei.model.Book">
-        select * from book
+        select <include refid="fields" /> from book
         <if test="type!=null and type!=''">
             where type=#{type}
         </if>

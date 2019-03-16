@@ -20,11 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cn.zml.sanwei.common.Constant.*;
+import static cn.zml.sanwei.common.Constant.GOOD_BOOK;
+import static cn.zml.sanwei.common.Constant.RANDOM_BOOK;
 
 /**
  * @author  fanyidong
@@ -90,9 +90,10 @@ public class BookServiceImpl implements BookService {
                 if (book.getComments().size() != 0) {
                     commentDao.insertList(book.getComments());
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 failList.add(book.getBookId());
                 log.error("【插入失败】 ----- " + book.getName() + " - ID=" + book.getBookId(), e);
+                continue;
             }
             log.info("【插入成功】 ----- " + book.getName());
         }
