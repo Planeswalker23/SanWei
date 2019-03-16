@@ -138,12 +138,14 @@ public class BookServiceImpl implements BookService {
         PageHelper.startPage(pageNum, pageSize);
         // 查询结果
         List<Book> list;
-        // 如果type属于1~10，则按照类型查询,11-特色书籍，12-好书推荐
         if (type.equals(RANDOM_BOOK)) {
+            // 11-特色书籍
             list = bookDao.getBooksOrderByPeople();
         } else if (type.equals(GOOD_BOOK)) {
+            // 12-好书推荐
             list = bookDao.getBooksWhichGradeOver8();
         } else {
+            // 类别1-10
             list = bookDao.getBooksByType(type);
         }
         return new PageInfo<>(list);

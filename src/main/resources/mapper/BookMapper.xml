@@ -8,7 +8,7 @@
     </sql>
 
     <sql id="distictName">
-        and name in (select distinct name from book)
+        name in (select distinct name from book)
     </sql>
 
     <insert id="insertAnyFieldsByList">
@@ -36,8 +36,7 @@
 
     <select id="getGradeTop10" resultType="cn.zml.sanwei.model.Book">
         select bookid,img,name,writer,grade,people
-        from book where 1=2 <include refid="distictName" />
-        order by grade desc,people desc,date desc limit 0,10
+        from book where <include refid="distictName" /> order by grade desc,people desc,date desc limit 0,10
     </select>
 
     <select id="getBooksByType" resultType="cn.zml.sanwei.model.Book">
@@ -49,19 +48,17 @@
 
     <select id="getBooksWhichGradeOver8" resultType="cn.zml.sanwei.model.Book">
         select <include refid="fields" />
-        from book where grade > 8 <include refid="distictName" />
-        order by grade desc,people desc,date desc
+        from book where grade > 8 and <include refid="distictName" /> order by grade desc,people desc,date desc
     </select>
 
     <select id="getBooksOrderByPeople" resultType="cn.zml.sanwei.model.Book">
         select <include refid="fields" />
-        from book where grade > 8 <include refid="distictName" />
+        from book where <include refid="distictName" />
         order by people desc,grade desc,date desc
     </select>
 
     <select id="getBooksOrderByDate" resultType="cn.zml.sanwei.model.Book">
         select <include refid="fields" />
-        from book where 1=2 <include refid="distictName" />
-        order by date desc,grade desc,people desc limit 0,20
+        from book where <include refid="distictName" /> order by date desc,grade desc,people desc limit 0,20
     </select>
 </mapper>
