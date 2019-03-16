@@ -7,10 +7,6 @@
         bookid,name,writer,publisher,date,img,type,introduce,grade,people,price,no
     </sql>
 
-    <sql id="distictName">
-        name in (select distinct name from book)
-    </sql>
-
     <insert id="insertAnyFieldsByList">
         insert into book values
         <foreach collection="list" item="item" index="index" separator=",">
@@ -35,8 +31,8 @@
     </select>
 
     <select id="getGradeTop10" resultType="cn.zml.sanwei.model.Book">
-        select bookid,img,name,writer,grade,people
-        from book where <include refid="distictName" /> order by grade desc,people desc,date desc limit 0,10
+        select bookid,img,name,writer,grade,people from book
+        group by name order by grade desc,people desc,date desc limit 0,10
     </select>
 
     <select id="getBooksByType" resultType="cn.zml.sanwei.model.Book">
@@ -47,18 +43,17 @@
     </select>
 
     <select id="getBooksWhichGradeOver8" resultType="cn.zml.sanwei.model.Book">
-        select <include refid="fields" />
-        from book where grade > 8 and <include refid="distictName" /> order by grade desc,people desc,date desc
+        select <include refid="fields" /> from book where grade > 8
+        group by name order by grade desc,people desc,date desc
     </select>
 
     <select id="getBooksOrderByPeople" resultType="cn.zml.sanwei.model.Book">
-        select <include refid="fields" />
-        from book where <include refid="distictName" />
-        order by people desc,grade desc,date desc
+        select <include refid="fields" /> from book
+        group by name order by people desc,grade desc,date desc
     </select>
 
     <select id="getBooksOrderByDate" resultType="cn.zml.sanwei.model.Book">
-        select <include refid="fields" />
-        from book where <include refid="distictName" /> order by date desc,grade desc,people desc limit 0,20
+        select <include refid="fields" /> from book
+        group by name order by date desc,grade desc,people desc limit 0,20
     </select>
 </mapper>
