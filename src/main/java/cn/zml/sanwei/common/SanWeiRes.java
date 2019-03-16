@@ -3,6 +3,8 @@ package cn.zml.sanwei.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
+import static cn.zml.sanwei.common.Constant.*;
+
 /**
  * 公用返回类
  * @Author fanyidong
@@ -52,22 +54,36 @@ public class SanWeiRes<T> {
 
     public static SanWeiRes success() {
         SanWeiRes sw = new SanWeiRes();
-        sw.setCode(200);
+        sw.setCode(REQUEST_SUCCESS_CODE);
         sw.setReason("成功");
         return sw;
     }
 
     public static <T> SanWeiRes success(T data) {
         SanWeiRes<T> sw = new SanWeiRes<>();
-        sw.setCode(200);
+        sw.setCode(REQUEST_SUCCESS_CODE);
         sw.setRes(data);
         return sw;
     }
 
     public static SanWeiRes failed(String reason) {
         SanWeiRes sw = new SanWeiRes();
-        sw.setCode(500);
+        sw.setCode(REQUEST_FAILED_CODE);
         sw.setReason(reason);
+        return sw;
+    }
+
+    public static SanWeiRes noParam(String param) {
+        SanWeiRes sw = new SanWeiRes();
+        sw.setCode(REQUEST_FAILED_CODE);
+        sw.setReason("缺少参数【" + param + "】");
+        return sw;
+    }
+
+    public static SanWeiRes noParam() {
+        SanWeiRes sw = new SanWeiRes();
+        sw.setCode(REQUEST_FAILED_CODE);
+        sw.setReason(EMPTY_PARAMS);
         return sw;
     }
 
