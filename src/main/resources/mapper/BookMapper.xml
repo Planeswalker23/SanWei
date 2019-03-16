@@ -4,7 +4,11 @@
 
     <!-- 根据name不重复 -->
     <sql id="fields">
-        bookid,distinct(name),writer,publisher,date,img,type,introduce,grade,people,price,no
+        bookid,name,writer,publisher,date,img,type,introduce,grade,people,price,no
+    </sql>
+
+    <sql id="distictName">
+        and name in (select distinct name from book)
     </sql>
 
     <insert id="insertAnyFieldsByList">
@@ -42,14 +46,20 @@
     </select>
 
     <select id="getBooksWhichGradeOver8" resultType="cn.zml.sanwei.model.Book">
-        select <include refid="fields" /> from book where grade > 8 order by grade desc,people desc,date desc
+        select <include refid="fields" />
+        from book where grade > 8 <include refid="distictName" />
+        order by grade desc,people desc,date desc
     </select>
 
     <select id="getBooksOrderByPeople" resultType="cn.zml.sanwei.model.Book">
-        select <include refid="fields" /> from book where grade > 8 order by people desc,grade desc,date desc
+        select <include refid="fields" />
+        from book where grade > 8 <include refid="distictName" />
+        order by people desc,grade desc,date desc
     </select>
 
     <select id="getBooksOrderByDate" resultType="cn.zml.sanwei.model.Book">
-        select <include refid="fields" /> from book order by date desc,grade desc,people desc limit 0,20
+        select <include refid="fields" />
+        from book <include refid="distictName" />
+        order by date desc,grade desc,people desc limit 0,20
     </select>
 </mapper>
