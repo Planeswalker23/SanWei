@@ -35,7 +35,9 @@
     </select>
 
     <select id="getGradeTop10" resultType="cn.zml.sanwei.model.Book">
-        select bookid,img,distinct(name),writer,grade,people from book order by grade desc,people desc,date desc limit 0,10
+        select bookid,img,name,writer,grade,people
+        from book <include refid="distictName" />
+        order by grade desc,people desc,date desc limit 0,10
     </select>
 
     <select id="getBooksByType" resultType="cn.zml.sanwei.model.Book">
