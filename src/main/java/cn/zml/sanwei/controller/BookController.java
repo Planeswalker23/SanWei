@@ -85,8 +85,8 @@ public class BookController {
 
     @PostMapping("getBooksOrderByDate")
     @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getBooksOrderByDateController() {
-        return SanWeiRes.success(bookService.getBooksOrderByDate());
+    public SanWeiRes getBooksOrderByDateController(Integer num) {
+        return SanWeiRes.success(bookService.getBooksOrderByDate(num));
     }
 
 }

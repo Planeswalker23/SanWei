@@ -74,8 +74,9 @@ public interface BookDao {
     List<Book> getBooksOrderByPeople();
 
     /**
-     * 根据出版日期降序取前20本
+     * 根据出版日期降序取前num本
+     * @param num 需要多少本
      * @return
      */
-    List<Book> getBooksOrderByDate();
+    List<Book> getBooksOrderByDate(@Param("num") Integer num);
 }

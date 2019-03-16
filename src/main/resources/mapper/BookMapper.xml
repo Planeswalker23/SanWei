@@ -54,6 +54,6 @@
 
     <select id="getBooksOrderByDate" resultType="cn.zml.sanwei.model.Book">
         select <include refid="fields" /> from book
-        group by name order by date desc,grade desc,people desc limit 0,30
+        group by name order by date desc,grade desc,people desc limit #{num}
     </select>
 </mapper>

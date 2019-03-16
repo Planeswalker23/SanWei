@@ -57,8 +57,9 @@ public interface BookService {
     PageInfo<Book> getBookByType(Integer type, Integer pageNum, Integer pageSize);
 
     /**
-     * 根据出版日期降序取前20本
+     * 根据出版日期降序取前num本
+     * @param num 需要的数量
      * @return
      */
-    List<Book> getBooksOrderByDate();
+    List<Book> getBooksOrderByDate(Integer num);
 }

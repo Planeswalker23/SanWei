@@ -153,7 +153,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getBooksOrderByDate() {
-        return bookDao.getBooksOrderByDate();
+    public List<Book> getBooksOrderByDate(Integer num) {
+        return bookDao.getBooksOrderByDate(num);
     }
 }
