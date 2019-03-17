@@ -257,3 +257,71 @@ mobile:10086
     "res": null
 }
 ```
+
+## 9. 收藏书籍
+* url地址：/addCollect
+* 请求方式：post
+* 参数：
+```$xslt
+userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
+bookId:ce704130-3e62-11e9-8f83-1c2b8518ea4c
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": "成功",
+    "res": null
+}
+```
+
+## 10. 取消收藏的书籍
+* url地址：/deleteCollect
+* 请求方式：post
+* 参数：
+```$xslt
+userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
+bookId:ce704130-3e62-11e9-8f83-1c2b8518ea4c
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": "成功",
+    "res": null
+}
+```
+
+## 11. 查看收藏的书籍
+* url地址：/getCollections
+* 请求方式：post
+* 参数：
+```$xslt
+userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": null,
+    "res": [
+        {
+            "bookId": "ce704130-3e62-11e9-8f83-1c2b8518ea4c",
+            "name": "追风筝的人",
+            "writer": "[美]卡勒德·胡赛尼/李继宏",
+            "publisher": "上海人民出版社",
+            "date": "2006-5",
+            "img": "https://img3.doubanio.com/view/subject/l/public/s1727290.jpg",
+            "type": 1,
+            "introduce": "12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟...",
+            "grade": "8.9",
+            "people": "355871",
+            "price": "29.00",
+            "no": "1770782",
+            "id": 5,
+            "userId": "3483bf80-47e4-11e9-9e5f-00163e0097c7",
+            "collectTime": "2019-03-17 12:12:55.0"  //收藏时间
+        },{……}
+    ]
+}
+```
