@@ -3,7 +3,7 @@ package cn.zml.sanwei.model;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import static cn.zml.sanwei.common.Constant.THOUSAND;
+import static cn.zml.sanwei.config.Constant.THOUSAND;
 
 /**
  * @author  fanyidong

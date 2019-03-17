@@ -1,6 +1,6 @@
 package cn.zml.sanwei.service.impl;
 
-import cn.zml.sanwei.common.SanweiException;
+import cn.zml.sanwei.config.SanweiException;
 import cn.zml.sanwei.dao.UserDao;
 import cn.zml.sanwei.model.User;
 import cn.zml.sanwei.service.UserService;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
-import static cn.zml.sanwei.common.Constant.*;
+import static cn.zml.sanwei.config.Constant.*;
 
 /**
  * User表相关的服务接口实现类

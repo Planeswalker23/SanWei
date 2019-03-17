@@ -1,4 +1,4 @@
-package cn.zml.sanwei.common;
+package cn.zml.sanwei.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

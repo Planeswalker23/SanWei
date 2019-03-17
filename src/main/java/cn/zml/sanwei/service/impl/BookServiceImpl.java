@@ -23,8 +23,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cn.zml.sanwei.common.Constant.GOOD_BOOK;
-import static cn.zml.sanwei.common.Constant.RANDOM_BOOK;
+import static cn.zml.sanwei.config.Constant.GOOD_BOOK;
+import static cn.zml.sanwei.config.Constant.RANDOM_BOOK;
 
 /**
  * @author  fanyidong

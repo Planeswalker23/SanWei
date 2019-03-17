@@ -1,4 +1,4 @@
-package cn.zml.sanwei.common;
+package cn.zml.sanwei.config;
 
 /**
  * 自定义异常类

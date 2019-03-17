@@ -1,6 +1,6 @@
 package cn.zml.sanwei.controller;
 
-import cn.zml.sanwei.common.SanWeiRes;
+import cn.zml.sanwei.config.SanWeiRes;
 import cn.zml.sanwei.model.User;
 import cn.zml.sanwei.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

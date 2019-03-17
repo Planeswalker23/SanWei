@@ -1,6 +1,6 @@
 package cn.zml.sanwei.controller;
 
-import cn.zml.sanwei.common.SanWeiRes;
+import cn.zml.sanwei.config.SanWeiRes;
 import cn.zml.sanwei.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static cn.zml.sanwei.common.Constant.SYSTEM_ERROR;
+import static cn.zml.sanwei.config.Constant.SYSTEM_ERROR;
 
 /**
  * 图书控制层

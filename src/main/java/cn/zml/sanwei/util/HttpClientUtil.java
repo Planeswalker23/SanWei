@@ -24,7 +24,7 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.UUID;
 
-import static cn.zml.sanwei.common.Constant.TWO;
+import static cn.zml.sanwei.config.Constant.TWO;
 
 
 /**

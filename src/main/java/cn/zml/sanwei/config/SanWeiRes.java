@@ -1,9 +1,9 @@
-package cn.zml.sanwei.common;
+package cn.zml.sanwei.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
-import static cn.zml.sanwei.common.Constant.*;
+import static cn.zml.sanwei.config.Constant.*;
 
 /**
  * 公用返回类

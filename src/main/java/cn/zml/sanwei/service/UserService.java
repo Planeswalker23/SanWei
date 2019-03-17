@@ -1,6 +1,6 @@
 package cn.zml.sanwei.service;
 
-import cn.zml.sanwei.common.SanweiException;
+import cn.zml.sanwei.config.SanweiException;
 import cn.zml.sanwei.model.User;
 
 /**
