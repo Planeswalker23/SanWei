@@ -63,4 +63,8 @@ public interface Constant {
 
     String FAILED = "失败";
 
+    String DATA_ERROR_NO_SUCH_BOOK = "数据错误，书库中无此书籍";
+
+    String HAS_COLLECTED_BOOK = "这本书已经收藏过了";
+
 }

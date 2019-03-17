@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zml.sanwei.dao.CollectDao">
+
+    <sql id="fields">
+        userid,bookid,collecttime
+    </sql>
+
+    <sql id="innerJoinBook">
+        id,userid,collecttime,c.bookid,name,writer,publisher,date,img,type,introduce,grade,people,price,no
+    </sql>
+
+    <insert id="insert" parameterType="cn.zml.sanwei.model.Collect">
+        insert into collect(<include refid="fields" />) values (#{userId},#{bookId},now())
+    </insert>
+
+    <delete id="delete">
+        delete from collect where userid=#{userId} and bookid=#{bookId}
+    </delete>
+
+    <select id="getCollectionsFromBookAndCollectByUserId" resultType="cn.zml.sanwei.model.CollectBook">
+        select <include refid="innerJoinBook" /> from collect c inner join book b on b.bookid=c.bookid
+        where userid=#{userId} order by id desc
+    </select>
+
+    <select id="hasBookCollected" resultType="java.lang.Integer">
+        select count(*) from collect where userid=#{userId} and bookid=#{bookId}
+    </select>
+</mapper>
