@@ -87,6 +87,13 @@ public class SanWeiRes<T> {
         return sw;
     }
 
+    public static SanWeiRes notLogin() {
+        SanWeiRes sw = new SanWeiRes();
+        sw.setCode(REQUEST_FAILED_CODE);
+        sw.setReason(NOT_LOGIN);
+        return sw;
+    }
+
     @Override
     public String toString() {
         //返回json时只返回不为null的字段

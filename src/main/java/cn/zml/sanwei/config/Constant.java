@@ -67,4 +67,8 @@ public interface Constant {
 
     String HAS_COLLECTED_BOOK = "这本书已经收藏过了";
 
+    String USER_BEAN = "userBean";
+
+    String NOT_LOGIN = "用户未登录";
+
 }

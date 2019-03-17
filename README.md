@@ -263,7 +263,6 @@ mobile:10086
 * 请求方式：post
 * 参数：
 ```$xslt
-userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
 bookId:ce704130-3e62-11e9-8f83-1c2b8518ea4c
 ```
 * 返回格式：
@@ -280,7 +279,6 @@ bookId:ce704130-3e62-11e9-8f83-1c2b8518ea4c
 * 请求方式：post
 * 参数：
 ```$xslt
-userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
 bookId:ce704130-3e62-11e9-8f83-1c2b8518ea4c
 ```
 * 返回格式：
@@ -297,7 +295,6 @@ bookId:ce704130-3e62-11e9-8f83-1c2b8518ea4c
 * 请求方式：post
 * 参数：
 ```$xslt
-userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
 ```
 * 返回格式：
 ```$xslt

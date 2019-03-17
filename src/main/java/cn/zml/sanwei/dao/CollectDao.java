@@ -1,6 +1,5 @@
 package cn.zml.sanwei.dao;
 
-import cn.zml.sanwei.model.Collect;
 import cn.zml.sanwei.model.CollectBook;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -17,15 +16,17 @@ public interface CollectDao {
 
     /**
      * 插入单条记录(id,userid,bookid,collecttime)
-     * @param collect
+     * @param userId
+     * @param bookId
      */
-    void insert(Collect collect);
+    void insert(@Param("userId") String userId, @Param("bookId") String bookId);
 
     /**
      * 根据userid,bookid删除记录
-     * @param collect
+     * @param userId
+     * @param bookId
      */
-    void delete(Collect collect);
+    void delete(@Param("userId") String userId, @Param("bookId") String bookId);
 
     /**
      * 根据userId联合查询book表和collect表
