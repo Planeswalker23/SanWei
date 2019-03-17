@@ -27,6 +27,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
+    @Transactional(rollbackFor = Exception.class)
     public SanWeiRes login(String account, String password) throws Exception {
         // 验证参数是否为空
         if (StringUtils.isEmpty(account) || StringUtils.isEmpty(password)) {
@@ -42,6 +43,7 @@ public class UserController {
      * @throws Exception
      */
     @PostMapping("/userInfo")
+    @Transactional(rollbackFor = Exception.class)
     public SanWeiRes info(String userId) throws Exception {
         // 验证参数是否为空
         if (StringUtils.isEmpty(userId)) {
