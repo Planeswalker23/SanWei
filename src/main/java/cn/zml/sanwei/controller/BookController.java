@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-
 import static cn.zml.sanwei.config.Constant.SYSTEM_ERROR;
 
 /**
@@ -64,9 +62,9 @@ public class BookController {
 
     @PostMapping("/getBookById")
     @Transactional(rollbackFor = Exception.class)
-    public SanWeiRes getBookByIdController(String bookId, HttpServletRequest request) {
+    public SanWeiRes getBookByIdController(String bookId, String userId) {
         try {
-            return SanWeiRes.success(bookService.getBookById(bookId, request));
+            return SanWeiRes.success(bookService.getBookById(bookId, userId));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return SanWeiRes.failed(SYSTEM_ERROR);
