@@ -38,7 +38,8 @@ bookId:ce703fd2-3e62-11e9-8f83-1c2b8518ea4c
 			"commentContent": "超级小说《巨人的陨落》征集超级好书评！",
 			"commentDate": "2016-09-27 11:38",
 			"comentGrade": null,
-		}]
+		}],
+		"hadCollected": true // 若已登录，用户是否收藏该书本
 	}
 }
 ```

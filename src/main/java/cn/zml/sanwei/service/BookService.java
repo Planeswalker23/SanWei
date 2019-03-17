@@ -5,6 +5,7 @@ import cn.zml.sanwei.model.BookDetailComments;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -36,9 +37,10 @@ public interface BookService {
     /**
      * 根据id查询书籍及所有评论信息
      * @param bookId
+     * @param request
      * @return BookDetailComments
      */
-    BookDetailComments getBookById(String bookId);
+    BookDetailComments getBookById(String bookId, HttpServletRequest request);
 
     /**
      * 查询评分前十的图书

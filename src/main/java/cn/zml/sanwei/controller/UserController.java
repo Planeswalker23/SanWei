@@ -46,7 +46,7 @@ public class UserController {
         // 将用户信息存入session
         HttpSession session = request.getSession();
         session.setAttribute(USER_BEAN, userBean);
-        log.info(USER_BEAN + "sessionId ==> " + session.getId() + " 【登录成功】 ==> " + JSON.toJSONString(userBean));
+        log.info("【登录成功】" + USER_BEAN + "sessionId ==> " + session.getId() + " ==> " + JSON.toJSONString(userBean));
         // 将用户密码置空
         userBean.setPassword(null);
         return SanWeiRes.success(userBean);

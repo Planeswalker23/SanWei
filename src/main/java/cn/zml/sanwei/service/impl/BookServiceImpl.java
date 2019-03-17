@@ -1,12 +1,10 @@
 package cn.zml.sanwei.service.impl;
 
 import cn.zml.sanwei.dao.BookDao;
+import cn.zml.sanwei.dao.CollectDao;
 import cn.zml.sanwei.dao.CommentDao;
 import cn.zml.sanwei.dao.DetailDao;
-import cn.zml.sanwei.model.Book;
-import cn.zml.sanwei.model.BookDetailComments;
-import cn.zml.sanwei.model.Comment;
-import cn.zml.sanwei.model.Detail;
+import cn.zml.sanwei.model.*;
 import cn.zml.sanwei.service.BookService;
 import cn.zml.sanwei.util.HttpClientUtil;
 import cn.zml.sanwei.util.ReadFileUtil;
@@ -19,12 +17,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cn.zml.sanwei.config.Constant.GOOD_BOOK;
-import static cn.zml.sanwei.config.Constant.RANDOM_BOOK;
+import static cn.zml.sanwei.config.Constant.*;
 
 /**
  * @author  fanyidong
@@ -37,11 +36,13 @@ public class BookServiceImpl implements BookService {
 
 
     @Autowired
-    BookDao bookDao;
+    private BookDao bookDao;
     @Autowired
-    DetailDao detailDao;
+    private DetailDao detailDao;
     @Autowired
-    CommentDao commentDao;
+    private CommentDao commentDao;
+    @Autowired
+    private CollectDao collectDao;
 
     @Override
     public void insertBooks(String filePath) {
@@ -113,7 +114,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDetailComments getBookById(String bookId) {
+    public BookDetailComments getBookById(String bookId, HttpServletRequest request) {
         // 获取book所有信息
         Book book = bookDao.getAllBookContentById(bookId);
         // 获取图书详情
@@ -125,6 +126,23 @@ public class BookServiceImpl implements BookService {
         BeanUtils.copyProperties(book, allBookContent);
         allBookContent.setDetail(detail);
         allBookContent.setComments(comments);
+        // 查询用户是否收藏过本书籍
+        try {
+            HttpSession session = request.getSession();
+            if (session != null) {
+                // 获取用户对象
+                User userBean = (User) session.getAttribute(USER_BEAN);
+                if (userBean != null) {
+                    if (collectDao.hasBookCollected(userBean.getUserId(), bookId) > 0) {
+                        // 该书籍已被当前用户收藏
+                        allBookContent.setHadCollected(true);
+                        log.info("本书籍【" + allBookContent.getName() + "】已被用户【" + userBean.getAccount() + "】收藏");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("获取session出错", e);
+        }
         return allBookContent;
     }
 
