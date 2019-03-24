@@ -1,13 +1,7 @@
 package cn.zml.sanwei.service.impl;
 
-import cn.zml.sanwei.dao.BookDao;
-import cn.zml.sanwei.dao.CollectDao;
-import cn.zml.sanwei.dao.CommentDao;
-import cn.zml.sanwei.dao.DetailDao;
-import cn.zml.sanwei.model.Book;
-import cn.zml.sanwei.model.BookDetailComments;
-import cn.zml.sanwei.model.Comment;
-import cn.zml.sanwei.model.Detail;
+import cn.zml.sanwei.dao.*;
+import cn.zml.sanwei.model.*;
 import cn.zml.sanwei.service.BookService;
 import cn.zml.sanwei.util.HttpClientUtil;
 import cn.zml.sanwei.util.ReadFileUtil;
@@ -46,6 +40,8 @@ public class BookServiceImpl implements BookService {
     private CommentDao commentDao;
     @Autowired
     private CollectDao collectDao;
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public void insertBooks(String filePath) {
@@ -136,6 +132,14 @@ public class BookServiceImpl implements BookService {
                 // 该书籍已被当前用户收藏
                 allBookContent.setHadCollected(true);
                 log.info("本书籍【" + allBookContent.getName() + "】已被用户【" + userId + "】收藏");
+            }
+        }
+        // 遍历comments评论列表，如果存在当前用户的评论详情则将分数赋值给currentUserGrade字段
+        for (Comment c:comments) {
+            User user = userDao.queryByUserId(userId);
+            if (c.getPerson().equals(user.getAccount())) {
+                // 设置当前用户对本书的评分
+                allBookContent.setCurrentUserGrade(Double.parseDouble(c.getCommentGrade()));
             }
         }
         return allBookContent;

@@ -17,6 +17,11 @@ public class BookDetailComments extends Book {
      */
     private boolean hadCollected = false;
 
+    /**
+     * 如果用户已登录，显示当前用户评论分数，默认0
+     */
+    private double currentUserGrade;
+
     public Detail getDetail() {
         return detail;
     }
@@ -43,5 +48,13 @@ public class BookDetailComments extends Book {
 
     public void setHadCollected(boolean hadCollected) {
         this.hadCollected = hadCollected;
+    }
+
+    public double getCurrentUserGrade() {
+        return currentUserGrade;
+    }
+
+    public void setCurrentUserGrade(double currentUserGrade) {
+        this.currentUserGrade = currentUserGrade;
     }
 }

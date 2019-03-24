@@ -24,6 +24,8 @@ bookId:ce703fd2-3e62-11e9-8f83-1c2b8518ea4c
 		"people": "42803",
 		"price": "129.80",
 		"no": "26698660",
+		"hasCollected":true, //本书是否被当前用户收藏
+		"currentUserGrade":1, //当前用户对本书的评分
 		"detail": {
 			"detailId": "3a6799b3-a2b5-4ab8-90f1-580e4667c2d7",
 			"bookId": "ce703fd2-3e62-11e9-8f83-1c2b8518ea4c",
