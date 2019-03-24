@@ -9,7 +9,7 @@
     </insert>
 
     <select id="getCommentsByBookId" resultType="cn.zml.sanwei.model.Comment">
-        select * from comment where bookid=#{bookId} order by createtime desc
+        select * from comment where bookid=#{bookId} and commentcontent is not null and commentcontent not like "" order by createtime desc
     </select>
 
     <select id="getCommentByBookIdPerson" resultType="cn.zml.sanwei.model.Comment">

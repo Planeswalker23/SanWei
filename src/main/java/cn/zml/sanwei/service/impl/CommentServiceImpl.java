@@ -58,7 +58,10 @@ public class CommentServiceImpl implements CommentService {
         }
         // 更新书本总评分
         if (grade != null) {
-            comment.setCommentGrade(updateOldGrade(bookId, grade));
+            // 更新本书总评分
+            updateOldGrade(bookId, grade);
+            // 设置本次评价分数
+            comment.setCommentGrade(String.valueOf(grade));
         }
         comment.setCommentContent(commentContent);
         comment.setCommentDate(DateUtils.dateToString(new Date(), YEAR_MONTH_DAY_HOUR_MUNITE_SECOND));
@@ -71,10 +74,10 @@ public class CommentServiceImpl implements CommentService {
         }
     }
 
-    private String updateOldGrade(String bookId, Double grade) throws SanweiException {
+    private void updateOldGrade(String bookId, Double grade) throws SanweiException {
         // 不更新评分
         if (grade == null) {
-            return null;
+            return;
         }
         Book book = bookDao.getBookById(bookId);
         if (book == null) {
@@ -84,12 +87,11 @@ public class CommentServiceImpl implements CommentService {
         int people = Integer.valueOf(book.getPeople());
         log.info("本书【" + book.getName() + "】原来的评分是 ==> " + perGrade + " 评价人数是 ==> " + people);
         perGrade = (perGrade * people + grade) / (++people);
-        String newGrade = NumUtil.stateScale(2, perGrade);
+        String newGrade = NumUtil.stateScale(1, perGrade);
         // 更新book
         book.setGrade(newGrade);
         book.setPeople(String.valueOf(people));
         bookDao.updateBookGradePeopleByBookId(book);
         log.info("本书【" + book.getName() + "】现在的评分是 ==> " + newGrade + " 评价人数是 ==> " + people);
-        return newGrade;
     }
 }
