@@ -133,13 +133,13 @@ public class BookServiceImpl implements BookService {
                 allBookContent.setHadCollected(true);
                 log.info("本书籍【" + allBookContent.getName() + "】已被用户【" + userId + "】收藏");
             }
-        }
-        // 遍历comments评论列表，如果存在当前用户的评论详情则将分数赋值给currentUserGrade字段
-        for (Comment c:comments) {
-            User user = userDao.queryByUserId(userId);
-            if (c.getPerson().equals(user.getAccount())) {
-                // 设置当前用户对本书的评分
-                allBookContent.setCurrentUserGrade(Double.parseDouble(c.getCommentGrade()));
+            // 遍历comments评论列表，如果存在当前用户的评论详情则将分数赋值给currentUserGrade字段
+            for (Comment c:comments) {
+                User user = userDao.queryByUserId(userId);
+                if (user.getAccount().equals(c.getPerson())) {
+                    // 设置当前用户对本书的评分，如果没有评分，则为0分
+                    allBookContent.setCurrentUserGrade(c.getCommentGrade()==null?null:Double.parseDouble(c.getCommentGrade()));
+                }
             }
         }
         return allBookContent;

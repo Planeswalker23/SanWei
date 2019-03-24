@@ -20,7 +20,7 @@ public class BookDetailComments extends Book {
     /**
      * 如果用户已登录，显示当前用户评论分数，默认0
      */
-    private double currentUserGrade;
+    private Double currentUserGrade;
 
     public Detail getDetail() {
         return detail;
@@ -50,11 +50,11 @@ public class BookDetailComments extends Book {
         this.hadCollected = hadCollected;
     }
 
-    public double getCurrentUserGrade() {
+    public Double getCurrentUserGrade() {
         return currentUserGrade;
     }
 
-    public void setCurrentUserGrade(double currentUserGrade) {
+    public void setCurrentUserGrade(Double currentUserGrade) {
         this.currentUserGrade = currentUserGrade;
     }
 }
