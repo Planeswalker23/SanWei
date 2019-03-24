@@ -126,6 +126,7 @@ public class BookServiceImpl implements BookService {
         List<Comment> comments = commentDao.getCommentsByBookId(bookId);
         // 返回的图书所有信息
         BookDetailComments allBookContent = new BookDetailComments();
+        // 将查询到的book内容拷贝到返回的对象中
         BeanUtils.copyProperties(book, allBookContent);
         allBookContent.setDetail(detail);
         allBookContent.setComments(comments);

@@ -100,7 +100,7 @@ public class HttpClientUtil {
                 dateIndex = 2;
             }
             String commentDate = contentElement.get(dateIndex).text();
-            Comment comment = new Comment(bookDetailComments.getBookId(), userName, commentContent, commentDate, commentGrade);
+            Comment comment = new Comment(bookDetailComments.getBookId(), userName, commentContent, commentDate, Double.valueOf(commentGrade));
             bookDetailComments.getComments().add(comment);
         }
         return bookDetailComments;

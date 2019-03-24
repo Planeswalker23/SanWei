@@ -11,4 +11,22 @@
     <select id="getCommentsByBookId" resultType="cn.zml.sanwei.model.Comment">
         select * from comment where bookid=#{bookId} order by createtime desc
     </select>
+
+    <select id="getCommentByBookIdPerson" resultType="cn.zml.sanwei.model.Comment">
+        select * from comment where bookid=#{bookId} and person=#{person}
+    </select>
+
+    <insert id="insert">
+        insert into comment values (uuid(),#{bookId},#{person},#{commentContent},#{commentGrade},#{commentDate},now(),now())
+    </insert>
+
+    <update id="updateByCommentId">
+        update comment
+        <trim prefix="set" suffixOverrides=",">
+            <if test="commentContent!=null and commentContent!=''">commentContent=#{commentContent},</if>
+            <if test="commentGrade!=null and commentGrade!=''">commentGrade=#{commentGrade},</if>
+            <if test="commentDate!=null and commentDate!=''">commentDate=#{commentDate}</if>
+        </trim>
+        where commentid=#{commentId}
+    </update>
 </mapper>

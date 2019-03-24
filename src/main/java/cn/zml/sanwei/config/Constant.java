@@ -71,4 +71,6 @@ public interface Constant {
 
     String NOT_LOGIN = "用户未登录";
 
+    String YEAR_MONTH_DAY_HOUR_MUNITE_SECOND = "yyyy-MM-dd HH:mm:ss";
+
 }

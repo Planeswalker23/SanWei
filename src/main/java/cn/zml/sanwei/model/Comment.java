@@ -17,14 +17,14 @@ public class Comment {
     private String person;
     private String commentContent;
     private String commentDate;
-    private String comentGrade;
+    private double comentGrade;
     private String createTime;
     private String updateTime;
 
     public Comment() {
     }
 
-    public Comment(String bookId, String person, String commentContent, String commentDate, String comentGrade) {
+    public Comment(String bookId, String person, String commentContent, String commentDate, double comentGrade) {
         this.setCommentId(UUID.randomUUID().toString());
         this.setBookId(bookId);
         this.person = person;
@@ -73,11 +73,11 @@ public class Comment {
         this.commentDate = commentDate;
     }
 
-    public String getComentGrade() {
+    public double getComentGrade() {
         return comentGrade;
     }
 
-    public void setComentGrade(String comentGrade) {
+    public void setComentGrade(double comentGrade) {
         this.comentGrade = comentGrade;
     }
 

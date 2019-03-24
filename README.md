@@ -326,3 +326,22 @@ userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
     ]
 }
 ```
+
+## 11. 增加评论/更新评论
+* url地址：/applyComment
+* 请求方式：post
+* 参数：
+```$xslt
+userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
+bookId:ce704130-3e62-11e9-8f83-1c2b8518ea4c
+grade:9
+commentContent:不错
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": "成功",
+    "res": null
+}
+```

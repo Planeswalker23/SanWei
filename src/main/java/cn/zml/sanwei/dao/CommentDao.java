@@ -28,4 +28,26 @@ public interface CommentDao {
      * @return list
      */
     List<Comment> getCommentsByBookId(@Param("bookId") String bookId);
+
+    /**
+     * 根据bookId和account(person字段)查看该用户有没有对本书做出过评分
+     * @param bookId
+     * @param account
+     * @return
+     */
+    Comment getCommentByBookIdPerson(@Param("bookId") String bookId, @Param("person") String account);
+
+    /**
+     * 插入单个评论对象
+     * @param comment
+     * @return
+     */
+    int insert(Comment comment);
+
+    /**
+     * 根据主键更新评分，评论内容，评论日期三个字段
+     * @param comment
+     * @return
+     */
+    int updateByCommentId(Comment comment);
 }
