@@ -17,20 +17,20 @@ public class Comment {
     private String person;
     private String commentContent;
     private String commentDate;
-    private double comentGrade;
+    private String commentGrade;
     private String createTime;
     private String updateTime;
 
     public Comment() {
     }
 
-    public Comment(String bookId, String person, String commentContent, String commentDate, double comentGrade) {
+    public Comment(String bookId, String person, String commentContent, String commentDate, String commentGrade) {
         this.setCommentId(UUID.randomUUID().toString());
         this.setBookId(bookId);
         this.person = person;
         this.commentContent = commentContent;
         this.commentDate = commentDate;
-        this.comentGrade = comentGrade;
+        this.commentGrade = commentGrade;
     }
 
     public String getCommentId() {
@@ -73,12 +73,12 @@ public class Comment {
         this.commentDate = commentDate;
     }
 
-    public double getComentGrade() {
-        return comentGrade;
+    public String getCommentGrade() {
+        return commentGrade;
     }
 
-    public void setComentGrade(double comentGrade) {
-        this.comentGrade = comentGrade;
+    public void setCommentGrade(String commentGrade) {
+        this.commentGrade = commentGrade;
     }
 
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")

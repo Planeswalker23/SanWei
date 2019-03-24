@@ -119,7 +119,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDetailComments getBookById(String bookId, String userId) {
         // 获取book所有信息
-        Book book = bookDao.getAllBookContentById(bookId);
+        Book book = bookDao.getBookById(bookId);
         // 获取图书详情
         Detail detail = detailDao.getDetailById(bookId);
         // 获取书评

@@ -22,8 +22,8 @@
         select count(*) from book where bookid=#{bookId}
     </select>
 
-    <select id="getAllBookContentById" resultType="cn.zml.sanwei.model.Book">
-        select * from book where book.bookid=#{bookId}
+    <select id="getBookById" resultType="cn.zml.sanwei.model.Book">
+        select * from book where bookid=#{bookId}
     </select>
 
     <select id="queryBookByNameWriter" resultType="cn.zml.sanwei.model.Book" parameterType="cn.zml.sanwei.model.Book">
@@ -56,4 +56,8 @@
         select <include refid="fields" /> from book
         group by name order by date desc,grade desc,people desc limit #{num}
     </select>
+
+    <update id="updateBookGradePeopleByBookId" parameterType="cn.zml.sanwei.model.Book">
+        update book set grade=#{grade},people=#{people} where bookid=#{bookId}
+    </update>
 </mapper>

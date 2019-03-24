@@ -33,7 +33,7 @@ public class CollectServiceImpl implements CollectService {
 
     @Override
     public void insert(String userId, String bookId) throws SanweiException {
-        Book book = bookDao.getAllBookContentById(bookId);
+        Book book = bookDao.getBookById(bookId);
         if (book==null) {
             throw new SanweiException(DATA_ERROR_NO_SUCH_BOOK);
         }

@@ -38,7 +38,7 @@ public interface BookDao {
      * @param bookId
      * @return BookDetailComments
      */
-    Book getAllBookContentById(@Param("bookId") String bookId);
+    Book getBookById(@Param("bookId") String bookId);
 
     /**
      * 根据书名、作者、类别查询是否有重复数据
@@ -79,4 +79,11 @@ public interface BookDao {
      * @return
      */
     List<Book> getBooksOrderByDate(@Param("num") Integer num);
+
+    /**
+     * 更新书本评分及人数
+     * @param book
+     * @return
+     */
+    int updateBookGradePeopleByBookId(Book book);
 }

@@ -1,10 +1,15 @@
 package cn.zml.sanwei.controller;
 
 import cn.zml.sanwei.config.SanWeiRes;
+import cn.zml.sanwei.config.SanweiException;
 import cn.zml.sanwei.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static cn.zml.sanwei.config.Constant.NOT_LOGIN;
 
 /**
  * 评论相关controller
@@ -18,7 +23,11 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("applyComment")
-    public SanWeiRes applyComment(String userId, String bookId, double grade, String commentContent) throws Exception {
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes applyComment(String userId, String bookId, Double grade, String commentContent) throws SanweiException {
+        if (StringUtils.isEmpty(userId)) {
+            throw new SanweiException(NOT_LOGIN);
+        }
         commentService.applyComment(userId, bookId, grade, commentContent);
         return SanWeiRes.success();
     }
