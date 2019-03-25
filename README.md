@@ -237,7 +237,26 @@ userId:8f00b259-47e3-11e9-9e5f-00163e0097c7
         "mobile": "10086",
         "email": "1235@qq.com",
         "createTime": "2019-03-16 20:03:49.0",
-        "updateTime": "2019-03-16 20:05:09.0"
+        "updateTime": "2019-03-16 20:09:38.0",
+        "personalComments": [
+            {
+                "bookId": "ce7219ce-3e62-11e9-8f83-1c2b8518ea4c",
+                "name": "红楼梦",
+                "writer": "[清]曹雪芹著、高鹗续",
+                "publisher": "人民文学出版社",
+                "date": "1996-12",
+                "img": "https://img1.doubanio.com/view/subject/l/public/s1070959.jpg",
+                "type": 8,
+                "introduce": "《红楼梦》是一部百科全书式的长篇小说。以宝黛爱情悲剧为主线，以四大家族的荣辱兴衰为背景，描绘出18世纪中国封建社会的方方面面，以及封建专制下新兴资本主义民主...",
+                "grade": "9.6",
+                "people": "145338",
+                "price": "59.70",
+                "no": "1007305",
+                "commentContent": "wo shi zhangzhang ya",
+                "commentDate": "2019-03-25 11:13:55",
+                "commentGrade": "10"
+            },{……}
+        ]
     }
 }
 ```
