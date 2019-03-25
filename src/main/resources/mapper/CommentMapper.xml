@@ -31,7 +31,7 @@
     </update>
 
     <select id="getPersonalCommentsByPersonName" resultType="cn.zml.sanwei.model.UserBooksComments">
-        select bookid,name,writer,publisher,date,img,type,introduce,grade,people,price,no,commentcontent,commentdate,commentgrade
+        select b.bookid,name,writer,publisher,date,img,type,introduce,grade,people,price,no,commentcontent,commentdate,commentgrade
         from comment c inner join book b on b.bookid=c.bookid
         where person=#{person}
     </select>
