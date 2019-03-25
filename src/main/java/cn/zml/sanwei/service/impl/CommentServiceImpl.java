@@ -86,7 +86,9 @@ public class CommentServiceImpl implements CommentService {
         double perGrade = Double.valueOf(book.getGrade());
         int people = Integer.valueOf(book.getPeople());
         log.info("本书【" + book.getName() + "】原来的评分是 ==> " + perGrade + " 评价人数是 ==> " + people);
+        log.info("除数=" + (perGrade * people + grade) + "；除数=" + (people+1));
         perGrade = (perGrade * people + grade) / (++people);
+        log.info("计算之后的评分 == > " + perGrade);
         String newGrade = NumUtil.stateScale(1, perGrade);
         // 更新book
         book.setGrade(newGrade);
