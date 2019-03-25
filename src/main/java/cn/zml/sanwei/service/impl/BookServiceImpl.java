@@ -173,4 +173,13 @@ public class BookServiceImpl implements BookService {
     public List<Book> getBooksOrderByDate(Integer num) {
         return bookDao.getBooksOrderByDate(num);
     }
+
+    @Override
+    public PageInfo<Book> search(String keyword, Integer pageNum, Integer pageSize) {
+        // 设置分页信息
+        PageHelper.startPage(pageNum, pageSize);
+        // 查询结果
+        List<Book> list = bookDao.search(keyword);
+        return new PageInfo<>(list);
+    }
 }

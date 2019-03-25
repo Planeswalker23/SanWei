@@ -60,4 +60,9 @@
     <update id="updateBookGradePeopleByBookId" parameterType="cn.zml.sanwei.model.Book">
         update book set grade=#{grade},people=#{people} where bookid=#{bookId}
     </update>
+
+    <select id="search" resultType="cn.zml.sanwei.model.Book">
+        select <include refid="fields" /> from book where name like concat('%',#{keyword},'%') or writer like concat('%',#{keyword},'%')
+        group by name order by grade desc,people desc,date desc
+    </select>
 </mapper>

@@ -86,4 +86,11 @@ public interface BookDao {
      * @return
      */
     int updateBookGradePeopleByBookId(Book book);
+
+    /**
+     * 根据关键字查询匹配的书籍
+     * @param keyword 支持书名和作者及简介
+     * @return
+     */
+    List<Book> search(@Param("keyword")String keyword);
 }

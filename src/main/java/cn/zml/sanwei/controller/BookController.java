@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,4 +90,12 @@ public class BookController {
         return SanWeiRes.success(bookService.getBooksOrderByDate(num));
     }
 
+    @PostMapping("search")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes search(String keyword, Integer pageNum, Integer pageSize) {
+        if (StringUtils.isEmpty(keyword)) {
+            return SanWeiRes.noParam("关键词");
+        }
+        return SanWeiRes.success(bookService.search(keyword, pageNum, pageSize));
+    }
 }

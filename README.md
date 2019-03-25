@@ -348,7 +348,7 @@ userId:3483bf80-47e4-11e9-9e5f-00163e0097c7
 }
 ```
 
-## 11. 增加评论/更新评论
+## 12. 增加评论/更新评论
 * url地址：/applyComment
 * 请求方式：post
 * 参数：
@@ -364,5 +364,61 @@ commentContent:不错
     "code": 200,
     "reason": "成功",
     "res": null
+}
+```
+
+## 13. 关键字搜索书籍
+* url地址：/search
+* 请求方式：post
+* 参数：
+```$xslt
+keyword:解忧杂货店
+pageNum:1
+pageSize:10
+```
+* 返回格式：
+```$xslt
+{
+    "code": 200,
+    "reason": null,
+    "res": {
+        "total": 1,
+        "list": [
+            {
+                "bookId": "ce703b5e-3e62-11e9-8f83-1c2b8518ea4c",
+                "name": "解忧杂货店",
+                "writer": "[日]东野圭吾/李盈春",
+                "publisher": "南海出版公司",
+                "date": "2014-5",
+                "img": "https://img3.doubanio.com/view/subject/l/public/s27264181.jpg",
+                "type": 1,
+                "introduce": "现代人内心流失的东西，这家杂货店能帮你找回——僻静的街道旁有一家杂货店，只要写下烦恼投进卷帘门的投信口，第二天就会在店后的牛奶箱里得到回答。因男友身患绝...",
+                "grade": "8.6",
+                "people": "331137",
+                "price": "39.50",
+                "no": "25862578"
+            }
+        ],
+        "pageNum": 1,
+        "pageSize": 10,
+        "size": 1,
+        "startRow": 1,
+        "endRow": 1,
+        "pages": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ],
+        "navigateFirstPage": 1,
+        "navigateLastPage": 1,
+        "firstPage": 1,
+        "lastPage": 1
+    }
 }
 ```

@@ -63,4 +63,13 @@ public interface BookService {
      * @return
      */
     List<Book> getBooksOrderByDate(Integer num);
+
+    /**
+     * 根据关键字查询匹配的书籍
+     * @param keyword 支持书名和作者及简介
+     * @param pageNum 页码
+     * @param pageSize 每页数目
+     * @return
+     */
+    PageInfo<Book> search(String keyword, Integer pageNum, Integer pageSize);
 }
