@@ -45,6 +45,10 @@ public class CommentServiceImpl implements CommentService {
         if (user == null) {
             throw new SanweiException(USER_NOT_EXIST);
         }
+        Book book = bookDao.getBookById(bookId);
+        if (book == null) {
+            throw new SanweiException(DATA_ERROR_NO_SUCH_BOOK);
+        }
         // 根据bookId和account(person字段)查看该用户有没有对本书做出过评分
         Comment comment = commentDao.getCommentByBookIdPerson(bookId, user.getAccount());
         // 如果没有评论过，则是插入
@@ -59,7 +63,7 @@ public class CommentServiceImpl implements CommentService {
         // 更新书本总评分
         if (grade != null) {
             // 更新本书总评分
-            updateOldGrade(bookId, grade);
+            updateOldGrade(book, grade);
             // 设置本次评价分数
             comment.setCommentGrade(String.valueOf(grade));
         }
@@ -74,14 +78,10 @@ public class CommentServiceImpl implements CommentService {
         }
     }
 
-    private void updateOldGrade(String bookId, Double grade) throws SanweiException {
+    private void updateOldGrade(Book book, Double grade) {
         // 不更新评分
         if (grade == null) {
             return;
-        }
-        Book book = bookDao.getBookById(bookId);
-        if (book == null) {
-            throw new SanweiException(DATA_ERROR_NO_SUCH_BOOK);
         }
         double perGrade = Double.valueOf(book.getGrade());
         int people = Integer.valueOf(book.getPeople());
