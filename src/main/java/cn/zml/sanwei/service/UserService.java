@@ -2,6 +2,7 @@ package cn.zml.sanwei.service;
 
 import cn.zml.sanwei.config.SanweiException;
 import cn.zml.sanwei.model.User;
+import cn.zml.sanwei.model.UserInfo;
 
 /**
  * User表相关的服务接口类
@@ -32,5 +33,5 @@ public interface UserService {
      * @return
      * @throws SanweiException
      */
-    User getUserInfo(String userId) throws SanweiException;
+    UserInfo getUserInfo(String userId) throws SanweiException;
 }

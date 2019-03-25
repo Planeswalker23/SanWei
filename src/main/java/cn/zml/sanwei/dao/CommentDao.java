@@ -1,6 +1,7 @@
 package cn.zml.sanwei.dao;
 
 import cn.zml.sanwei.model.Comment;
+import cn.zml.sanwei.model.UserBooksComments;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -50,4 +51,11 @@ public interface CommentDao {
      * @return
      */
     int updateByCommentId(Comment comment);
+
+    /**
+     * 根据用户名获取他评论的书籍
+     * @param person
+     * @return
+     */
+    List<UserBooksComments> getPersonalCommentsByPersonName(@Param("person") String person);
 }

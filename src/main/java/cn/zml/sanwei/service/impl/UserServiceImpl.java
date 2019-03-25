@@ -1,16 +1,22 @@
 package cn.zml.sanwei.service.impl;
 
 import cn.zml.sanwei.config.SanweiException;
+import cn.zml.sanwei.dao.CommentDao;
 import cn.zml.sanwei.dao.UserDao;
 import cn.zml.sanwei.model.User;
+import cn.zml.sanwei.model.UserBooksComments;
+import cn.zml.sanwei.model.UserInfo;
 import cn.zml.sanwei.service.UserService;
 import cn.zml.sanwei.util.CheckUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 import static cn.zml.sanwei.config.Constant.*;
 
@@ -26,6 +32,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private CommentDao commentDao;
 
     @Override
     public User login(String account, String password) throws SanweiException {
@@ -75,7 +83,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserInfo(String userId) throws SanweiException {
+    public UserInfo getUserInfo(String userId) throws SanweiException {
+        UserInfo userInfo = new UserInfo();
         User selective = new User();
         selective.setUserId(userId);
         // 验证查询结果是否为空
@@ -84,7 +93,11 @@ public class UserServiceImpl implements UserService {
             throw new SanweiException(USER_NOT_EXIST);
         }
         log.info("日志信息 => 用户个人信息 ***** " + resUser.toString());
-        return resUser;
+        // 赋值
+        BeanUtils.copyProperties(resUser, userInfo);
+        List<UserBooksComments> comments = commentDao.getPersonalCommentsByPersonName(resUser.getAccount());
+        userInfo.setPersonalComments(comments);
+        return userInfo;
     }
 
     public int addUser(User newUser, Integer existNum) throws SanweiException {
