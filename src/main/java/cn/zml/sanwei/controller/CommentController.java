@@ -9,8 +9,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static cn.zml.sanwei.config.Constant.NOT_LOGIN;
-
 /**
  * 评论相关controller
  * @author fanyidong
@@ -26,7 +24,7 @@ public class CommentController {
     @Transactional(rollbackFor = Exception.class)
     public SanWeiRes applyComment(String userId, String bookId, Double grade, String commentContent) throws SanweiException {
         if (StringUtils.isEmpty(userId)) {
-            throw new SanweiException(NOT_LOGIN);
+            return SanWeiRes.notLogin();
         }
         commentService.applyComment(userId, bookId, grade, commentContent);
         return SanWeiRes.success();
