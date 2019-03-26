@@ -29,4 +29,13 @@ public class CommentController {
         commentService.applyComment(userId, bookId, grade, commentContent);
         return SanWeiRes.success();
     }
+
+    @PostMapping("getUserComments")
+    @Transactional(rollbackFor = Exception.class)
+    public SanWeiRes getUserComments(String userId, Integer pageNum, Integer pageSize) throws SanweiException {
+        if (StringUtils.isEmpty(userId)) {
+            return SanWeiRes.notLogin();
+        }
+        return SanWeiRes.success(commentService.getUserComments(userId, pageNum, pageSize));
+    }
 }

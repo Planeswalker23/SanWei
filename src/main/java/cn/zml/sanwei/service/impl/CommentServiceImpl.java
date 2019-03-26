@@ -7,10 +7,13 @@ import cn.zml.sanwei.dao.UserDao;
 import cn.zml.sanwei.model.Book;
 import cn.zml.sanwei.model.Comment;
 import cn.zml.sanwei.model.User;
+import cn.zml.sanwei.model.UserBooksComments;
 import cn.zml.sanwei.service.CommentService;
 import cn.zml.sanwei.util.DateUtils;
 import cn.zml.sanwei.util.NumUtil;
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +79,16 @@ public class CommentServiceImpl implements CommentService {
             commentDao.updateByCommentId(comment);
             log.info("更新评论，更新后的内容为 ==> " + JSON.toJSONString(comment));
         }
+    }
+
+    @Override
+    public PageInfo<UserBooksComments> getUserComments(String userId, Integer pageNum, Integer pageSize) throws SanweiException {
+        PageHelper.startPage(pageNum, pageSize);
+        User user = userDao.queryByUserId(userId);
+        if (user == null) {
+            throw new SanweiException(USER_NOT_EXIST);
+        }
+        return new PageInfo<>(commentDao.getPersonalCommentsByPersonName(user.getAccount()));
     }
 
     private void updateOldGrade(Book book, Double grade) {
